@@ -3,6 +3,8 @@
     <%= render 'shared/fyne_logo'  %>
     <h1>fyne</h1>
     <p>find your next experiences</p>
-    <%= link_to "Start", new_user_session_path, class:"btn btn-start btn-lg" %>
+      <%= link_to "Sign up with Facebook", "", class: "btn btn-facebook" %>
+      <%= link_to "Sign up with Email", new_user_registration_path, class: "btn btn-email" %>
+    <p>Have an account? <%= link_to "Log in", new_user_session_path %></p>
   </div>
 </div>
