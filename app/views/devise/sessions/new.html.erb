@@ -1,15 +1,33 @@
-<h2>Log in</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="container">
+  <div class="row">
+     <!-- render 'shared/sign_in_banner' -->
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+  <div class="row">
+    <h1>Welcome to FYNE!</h1>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email, required: false, autofocus: true %>
+        <%= f.input :password, required: false %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="row">
+    <div class="col-xs-12 ">
+      <%= link_to "Sign up with Email", new_user_registration_path, class: "btn btn-email" %>
+      <%= link_to "Sign up with Facebook", "", class: "btn btn-facebook" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <!-- render "devise/shared/links"  -->
+  </div>
+</div>
+
+
+
+
+
+
+
