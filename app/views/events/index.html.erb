@@ -1,0 +1,39 @@
+<%=  link_to "Create an event", new_event_path, class: "btn btn-primary"  %>
+<%=  link_to "See my events", events_path, class: "btn btn-primary"  %>
+
+<% @group_of_events.each do |event| %>
+  <p>
+    <%= event.name %>
+    <%= event.id %>
+  </p>
+<% end %>
+<!-- [
+
+  {
+    11-10-2016: [
+  Event,
+  Event,
+    ]
+  },
+
+  {
+    11-10-2016: [
+  Event,
+  Event,
+    ]
+  },
+
+  {
+    11-10-2016: [
+  Event,
+  Event,
+    ]
+  },
+  {
+    11-10-2016: [
+  Event,
+  Event,
+    ]
+  }
+]
+ -->
