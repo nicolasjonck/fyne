@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   before_action :set_user, only:[:show, :new, :create, :edit, :update, :destroy]
 
   def index
-    @group_of_events = Event.all.order(start_time: :asc).group("DATE_TRUNC('day', start_time)")
+    @group_of_events = Event.all
+    # .order(start_time: :asc).group("DATE_TRUNC('day', start_time)")
     #Afterwards, need to do where swipe.interested = true or where swipe.event.user = current_user
   end
 

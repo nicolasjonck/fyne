@@ -1,15 +1,12 @@
 <%=  link_to "Create an event", new_event_path, class: "btn btn-primary"  %>
 <%=  link_to "See my events", events_path, class: "btn btn-primary"  %>
 
-<% @groups_of_events.each do |day_hash| %>
-  <% day_hash.each do |day, events| %>
-  <%= day %>
-    <% events.each do |event| %>
-      <%= event.name %>
-    <% end %>
-  <% end %>
+<% @group_of_events.each do |event| %>
+  <p>
+    <%= event.name %>
+    <%= event.id %>
+  </p>
 <% end %>
-
 <!-- [
 
   {
