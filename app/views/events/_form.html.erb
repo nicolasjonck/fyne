@@ -1,0 +1,19 @@
+<%= simple_form_for(@event) do |f| %>
+<%= f.input :name %>
+<%= f.input :category %>
+<%= f.input :subcategory %>
+<%= f.input :start_time %>
+<%= f.input :end_time %>
+<%= f.input :street_address %>
+<%= f.input :zip_code %>
+<%= f.input :city %>
+<%= f.input :state %>
+<%= f.input :country %>
+<%= f.input :photo %>
+<%= f.submit "Save changes", class: "btn btn-primary" %>
+<% end %>
+ <p>
+  Categories: ["Art & Culture,", "Music", "Films & Series", "Sports", "Games", "Wellness & Health", "Spirituality", "Non-profit", "Tasting & Restauration", "Crafting", "Party", "Business", "Politics", "Other"]
+
+  Subcats: ["Theatre", "Literature", "Alternative", "Blues", "Classical", "Dance", "Electro", "Hip-hop/Rap", "Jazz", "Metal", "For children", "World music", "Pop", "Raggae", "Rock", "Other genre", "Action", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Romance", "Sport", "War", "Western", "Football", "Rugby", "Tennis", "Formula 1", "Auto/moto", "Basket", "Handball", "Golf", "Cycle", "Winter sports", "Athletism", "Swimming", "Volley-ball", "Other sports", "Games", "Dancing", "Fitness", "Health", "Spirituality", "Non-profit", "Food tasting", "Drink tasting", "Crafting (General)", "Gardening", "Home", "Party", "Networking", "Shopping", "Conference", "Politics", "Other"]
+</p>

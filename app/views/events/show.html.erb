@@ -1,0 +1,6 @@
+<h1> <%= @event.name %> </h1>
+
+<% if event.user == current_user %>
+  <% link_to "Edit my event", edit_event_path(@event), class: "btn btn-primary" %>
+  <% link_to "Delete my event", event_path(@event), method: :delete, class: "btn btn-primary" %>
+<% end %>
