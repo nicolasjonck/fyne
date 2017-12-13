@@ -1,9 +1,12 @@
 <h1><%= current_user.first_name %> <%= current_user.last_name %>'s calendar page</h1>
 
+<h2>Discover new events:</h2>
+<%= link_to "Swipe page", new_swipe_path %>
+
 <h2>Events you liked:</h2>
 
 <ul>
-  <% @swipes.each do |swipe| %>
+  <% @swipes_liked.each do |swipe| %>
     <li>
       <h3><%= swipe.event.name %></h3>
       <p>Category: <%= swipe.event.category %>/<%= swipe.event.subcategory %></p>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'swipes/index'
+  # get 'swipes/index', to: 'swipes#index'
+
+  # get 'swipes/new', to: 'swipes#new'
+  # get 'swipes', to: 'swipes#create'
 
   devise_for :users
 
@@ -10,5 +13,8 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'pages#profile'
 
+  resources :swipes, only: [:index, :new, :create]
+
   mount Attachinary::Engine => "/attachinary"
+
 end

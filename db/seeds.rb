@@ -194,3 +194,39 @@ end
 
 Swipe.create!(swipes_attributes)
 puts 'Finished with swipes!'
+
+# Creating events that have not been swiped by the user
+
+puts 'Creating events not swiped yet'
+
+events_not_swiped_attributes = [
+  { name: "Lyon vs. Barcelona",
+    category: "Sports",
+    subcategory: "Football",
+    start_time: DateTime.new(2018,2,25,20,45,0),
+    end_time: DateTime.new(2018,2,25,22,45,0),
+    photo: "",
+    street_address: "28 Rue du Commandant Guilbaud",
+    city: Faker::Address.city,
+    zip_code: "75016",
+    state: "Saint Germain",
+    country: "France",
+    user_id: User.first.id,
+  },
+  { name: "Marseille vs. PSG",
+    category: "Sports",
+    subcategory: "Football",
+    start_time: DateTime.new(2018,2,25,20,45,0),
+    end_time: DateTime.new(2018,2,25,22,45,0),
+    photo: "",
+    street_address: "28 Rue du Commandant Guilbaud",
+    city: Faker::Address.city,
+    zip_code: "75016",
+    state: "Saint Germain",
+    country: "France",
+    user_id: User.last.id,
+  },
+]
+
+Event.create!(events_not_swiped_attributes)
+puts 'Finished with events not swiped'

@@ -1,0 +1,16 @@
+<% if @event != nil %>
+  <h1>
+    <%= @event.name %>
+  </h1>
+  <%= simple_form_for(@swipe) do |f|  %>
+    <%= f.collection_radio_buttons :interested, [[false, 'Dislike'] ,[true, 'Like']], :first, :last %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :event_id, :value => @event.id %>
+    <%= f.submit %>
+  <% end %>
+
+<% else %>
+  <h1>You have swiped all the events</h1>
+  <%= link_to "See your calendar", swipes_path %>
+
+<% end %>
