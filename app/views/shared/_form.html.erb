@@ -1,7 +1,10 @@
+
+
+
 <%= simple_form_for(@event) do |f| %>
 <%= f.input :name %>
-<%= f.input :category %>
-<%= f.input :subcategory %>
+<%= f.input :category, placeholder: 'Please choose your category', collection: ["Art & Culture", "Music", "Films & Series", "Sports", "Games", "Wellness & Health", "Spirituality", "Non-profit", "Tasting & Restauration", "Crafting", "Party", "Business", "Politics", "Other"] %>
+<%= f.input :subcategory, collection: ["a", "b"], placeholder: 'Please choose your subcategory' %>
 <%= f.input :start_time %>
 <%= f.input :end_time %>
 <%= f.input :street_address %>
