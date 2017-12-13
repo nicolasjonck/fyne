@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'swipes/index'
+
   devise_for :users
 
   resources :events
