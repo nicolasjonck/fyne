@@ -1,17 +1,43 @@
 
+<div class="container">
+  <div class="background-card">
+    <div class="row">
+        <%= simple_form_for(@event) do |f| %>
+      <div class="col-xs-12 col-lg-6">
+        <%= f.input :name %>
+        <%= f.input :photo %>
+      </div>
+      <div class="col-xs-12 col-lg-6">
+        <%= f.input :category, prompt: 'Please choose your category', collection: ["Art & Culture", "Music", "Films & Series", "Sports", "Games", "Wellness & Health", "Spirituality", "Non-profit", "Tasting & Restauration", "Crafting", "Party", "Business", "Politics", "Other"] %>
+        <%= f.input :subcategory, collection: ["Please select a category first"], prompt: 'Please choose your subcategory' %>
+      </div>
+    </div>
+  </div>
 
+  <div class="background-card">
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <%= f.input :start_time %>
+        <%= f.input :end_time %>
+      </div>
 
-<%= simple_form_for(@event) do |f| %>
-<%= f.input :name %>
-<%= f.input :category, placeholder: 'Please choose your category', collection: ["Art & Culture", "Music", "Films & Series", "Sports", "Games", "Wellness & Health", "Spirituality", "Non-profit", "Tasting & Restauration", "Crafting", "Party", "Business", "Politics", "Other"] %>
-<%= f.input :subcategory, collection: ["a", "b"], placeholder: 'Please choose your subcategory' %>
-<%= f.input :start_time %>
-<%= f.input :end_time %>
-<%= f.input :street_address %>
-<%= f.input :zip_code %>
-<%= f.input :city %>
-<%= f.input :state %>
-<%= f.input :country %>
-<%= f.input :photo %>
-<%= f.submit "Save changes", class: "btn btn-primary" %>
-<% end %>
+      <div class="col-xs-12 col-lg-6">
+        <%= f.input :street_address %>
+        <%= f.input :zip_code %>
+        <%= f.input :city %>
+        <%= f.input :state %>
+        <%= f.input :country %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="text-center">
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -22,21 +22,17 @@ subcats_hash["Other"] = ["Other"];
 
 
 categoryField.addEventListener("change",(event) => {
-console.log(subcats_hash[categoryField.value])
   let categorySelected = categoryField.value;
   let subcategories_matching = subcats_hash[categorySelected];
 
-  // subcategoryField.remove()
+  let subcat_options = subcategoryField.querySelectorAll("option");
 
-  subcategoryField.querySelectorAll("option").remove();
+  subcategoryField.innerHTML = ""
 
-
-
-  // subcategories_matching.foreach((subcategory) => {
-  //   subcategoryField.insertAdjacentHTML("beforeend", "<option value='${subcategory}'>${subcategory}</option>");
-  // });
+  subcategories_matching.forEach((subcategory) => {
+    subcategoryField.insertAdjacentHTML("beforeend", `<option value="${subcategory}">${subcategory}</option>`);
+  });
 
 });
 
-// document.getElementById('event_subcategory').insertAdjacentHTML("beforeend", "<option value='Theatre'>Theatre</option>");
 
