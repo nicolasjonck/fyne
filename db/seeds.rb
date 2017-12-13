@@ -77,7 +77,22 @@ events_attributes = [
     state: "Paris",
     country: "France",
     user_id: User.last.id,
+  },
+  {
+    name: "Vianney @Forest National",
+    category: "Music",
+    subcategory: "Pop",
+    start_time: DateTime.new(2017,2,24,21),
+    end_time: DateTime.new(2018,2,24,22),
+    photo: "",
+    street_address: "8 Boulevard de Bercy",
+    city: "Paris",
+    zip_code: "75012",
+    state: "Paris",
+    country: "France",
+    user_id: User.last.id,
   }
+
 ]
 Event.create!(events_attributes)
 puts 'Finished!'
