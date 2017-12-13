@@ -1,0 +1,15 @@
+<h1><%= current_user.first_name %> <%= current_user.last_name %>'s calendar page</h1>
+
+<h2>Events you liked:</h2>
+
+<ul>
+  <% @swipes.each do |swipe| %>
+    <li>
+      <h3><%= swipe.event.name %></h3>
+      <p>Category: <%= swipe.event.category %>/<%= swipe.event.subcategory %></p>
+      <p>Date: <%= swipe.event.start_time %> - <%= swipe.event.end_time %></p>
+      <p>Location: <%= swipe.event.street_address %> <%= swipe.event.zip_code %> <%= swipe.event.city %>, <%= swipe.event.country %></p>
+      <p>Created by: <%= swipe.event.user.first_name %> <%= swipe.event.user.last_name %></p>
+    </li>
+  <% end %>
+</ul>
