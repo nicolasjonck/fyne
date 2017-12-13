@@ -1,4 +1,5 @@
 require_relative 'boot'
+require "sprockets/railtie"
 
 require 'rails/all'
 
@@ -8,6 +9,8 @@ Bundler.require(*Rails.groups)
 
 module Fyne
   class Application < Rails::Application
+    require "attachinary/orm/active_record"
+
     config.generators do |generate|
       generate.assets false
       generate.helper false
