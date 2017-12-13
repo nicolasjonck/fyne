@@ -39,7 +39,7 @@ users_attributes = [
   }
 ]
 User.create!(users_attributes)
-puts 'Finished!'
+puts 'Finished with users!'
 
 # Seeding the events
 
@@ -80,5 +80,31 @@ events_attributes = [
   }
 ]
 Event.create!(events_attributes)
-puts 'Finished!'
+puts 'Finished with events!'
+
+# Seeding the swipes
+
+puts 'Cleaning swipe database'
+Swipe.destroy_all
+
+puts 'Creating swipes...'
+swipes_attributes = [
+  {
+    user_id: User.first.id,
+    event_id: Event.first.id,
+    interested: true,
+  },
+  {
+    user_id: User.last.id,
+    event_id: Event.last.id,
+    interested: false,
+  },
+  {
+    user_id: User.first.id,
+    event_id: Event.last.id,
+    interested: false,
+  }
+]
+Swipe.create!(swipes_attributes)
+puts 'Finished with swipes!'
 
