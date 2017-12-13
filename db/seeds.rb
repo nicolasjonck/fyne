@@ -49,16 +49,17 @@ puts 'Cleaning event database'
 Event.destroy_all
 
 puts 'Creating events...'
+
 events_attributes = [
   {
     name: "PSG vs. Real Madrid",
     category: "Sports",
     subcategory: "Football",
-    start_time: DateTime.new(2018,2,14,21),
-    end_time: DateTime.new(2018,2,14,23),
+    start_time: DateTime.new(2018,2,24,20,45,0),
+    end_time: DateTime.new(2018,2,24,22,45,0),
     photo: "",
     street_address: "24 Rue du Commandant Guilbaud",
-    city: "Paris",
+    city: Faker::Address.city,
     zip_code: "75016",
     state: "Paris",
     country: "France",
@@ -68,8 +69,8 @@ events_attributes = [
     name: "DJ Snake @AccorHotel Arena",
     category: "Music",
     subcategory: "Electro",
-    start_time: DateTime.new(2018,2,24,21),
-    end_time: DateTime.new(2018,2,24,22),
+    start_time: DateTime.new(2018,2,24,21,4,9),
+    end_time: DateTime.new(2018,2,24,22,9,0),
     photo: "",
     street_address: "8 Boulevard de Bercy",
     city: "Paris",
@@ -77,10 +78,100 @@ events_attributes = [
     state: "Paris",
     country: "France",
     user_id: User.last.id,
-  }
+  },
+  {
+    name: "Vianney @Ancienne Belgique",
+    category: "Music",
+    subcategory: "Pop",
+    start_time: DateTime.new(2017,2,24,21,4,9),
+    end_time: DateTime.new(2018,2,24,22,9,0),
+    photo: "",
+    street_address: "12 Grand Place",
+    city: "Brussels",
+    zip_code: "1000",
+    state: "Brussels",
+    country: "Belgium",
+    user_id: User.last.id,
+  },
+  {
+    name: "Belgium - Georgia @King Baudouin Stadium",
+    category: "Sports",
+    subcategory: "Rugby",
+    start_time: DateTime.new(2018,2,24,20,0,0),
+    end_time: DateTime.new(2018,2,24,22,0,0),
+    photo: "",
+    street_address: "Avenue de Marathon 135",
+    city: "Brussels",
+    zip_code: "1020",
+    state: "Brussels",
+    country: "Belgium",
+    user_id: User.last.id,
+  },
+    {
+    name: "Brunch in the Park",
+    category: "Music",
+    subcategory: "Electro",
+    start_time: DateTime.new(2018,2,24,12,45,0),
+    end_time: DateTime.new(2018,2,24,22,45,0),
+    photo: "",
+    street_address: "Ctra. de Montjuïc 40",
+    city: "Barcelona",
+    zip_code: "08038",
+    state: "Barcelona",
+    country: "Spain",
+    user_id: User.first.id,
+  },
+  {
+    name: "El Molino On @El Molino Theatre",
+    category: "Art & Culture",
+    subcategory: "Theatre",
+    start_time: DateTime.new(2018,2,24,19,0,0),
+    end_time: DateTime.new(2018,2,24,22,0,0),
+    photo: "",
+    street_address: "Carrer de Vila i Vilà 99",
+    city: "Barcelona",
+    zip_code: "08004",
+    state: "Barcelona",
+    country: "Spain",
+    user_id: User.last.id,
+  },
+  {
+    name: "Parc de la Ciutadella",
+    category: "Crafting",
+    subcategory: "Gardening",
+    start_time: DateTime.new(2017,2,24,21,4,9),
+    end_time: DateTime.new(2018,2,24,22,9,0),
+    photo: "",
+    street_address: "21 Passeig de Picasso",
+    city: "Barcelona",
+    zip_code: "08003",
+    state: "Barcelona",
+    country: "Spain",
+    user_id: User.last.id,
+  },
+  {
+    name: "Alimentaria",
+    category: "Tasting & Restauration",
+    subcategory: "Food tasting",
+    start_time: DateTime.new(2018,4,16,12,0,0),
+    end_time: DateTime.new(2018,4,18,22,0,0),
+    photo: "",
+    street_address: "Gran Via",
+    city: "Barcelona",
+    zip_code: "08028",
+    state: "Barcelona",
+    country: "Spain",
+    user_id: User.last.id,
+  },
 ]
-Event.create!(events_attributes)
-puts 'Finished with events!'
+
+# Event.create!(events_attributes)
+  events_attributes.each do |event|
+    Event.create!(event)
+    puts "#{event[:name]} has been created!"
+  end
+
+puts "Events created!"
 
 # Seeding the swipes
 
@@ -107,4 +198,3 @@ swipes_attributes = [
 ]
 Swipe.create!(swipes_attributes)
 puts 'Finished with swipes!'
-

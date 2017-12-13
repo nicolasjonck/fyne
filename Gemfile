@@ -9,6 +9,7 @@ gem 'puma'
 gem 'rails', '5.0.6'
 gem 'redis'
 gem 'country_select'
+gem 'faker'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
