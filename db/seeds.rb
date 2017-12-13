@@ -179,22 +179,18 @@ puts 'Cleaning swipe database'
 Swipe.destroy_all
 
 puts 'Creating swipes...'
-swipes_attributes = [
-  {
-    user_id: User.first.id,
-    event_id: Event.first.id,
-    interested: true,
-  },
-  {
-    user_id: User.last.id,
-    event_id: Event.last.id,
-    interested: false,
-  },
-  {
-    user_id: User.first.id,
-    event_id: Event.last.id,
-    interested: false,
+
+swipes_attributes = []
+
+User.all.each do |user|
+  Event.all.each do |event|
+    swipes_attributes << {
+    user_id: user.id,
+    event_id: event.id,
+    interested: [true, false].sample,
   }
-]
+  end
+end
+
 Swipe.create!(swipes_attributes)
 puts 'Finished with swipes!'
