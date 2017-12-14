@@ -2,3 +2,40 @@
 @import "alert";
 @import "navbar";
 @import "banner";
+@import "event-display";
+
+body {
+  color: $black;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 24px;
+  color: $black;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: $black;
+  margin-top: 18px;
+  margin-bottom: 0px;
+}
+
+h6 {
+  color: $gray;
+  margin: 0px;
+  font-size: 12px;
+}
+
+hr {
+  border-color: $gray;
+}
+
+.btn {
+  font-weight: bold;
+}
+
+a {
+  color: $gray;
+}
