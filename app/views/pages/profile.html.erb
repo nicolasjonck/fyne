@@ -1,19 +1,21 @@
+<%= render 'shared/navbar', profile_color: "active", calendar_color: "inactive", fyne_color: "inactive" %>
 <% content_for(:title_profile) do %>
   <%= @user.first_name %> <%= @user.last_name %>
 <% end %>
 
-
 <div class="container">
-  <div class="row">
+  <div class="row basic-info">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <% if @user.photo? %>
         <%= cl_image_tag @user.photo.path, class: "avatar"  %>
       <% else %>
         <%= image_tag 'avatar.jpg', class: "avatar" %>
       <% end %>
-      <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-      <%= link_to "Update profile", edit_user_registration_path, class:"btn btn-primary" %>
+      <h1 class="inline"><%= @user.first_name %> <%= @user.last_name %></h1>
     </div>
   </div>
+  <div class="row buttons"></div>
+    <%= link_to "Update profile", edit_user_registration_path, class:"btn btn-primary" %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
 </div>
 
