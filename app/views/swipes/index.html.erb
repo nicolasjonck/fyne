@@ -1,7 +1,6 @@
-<h1><%= current_user.first_name %> <%= current_user.last_name %>'s calendar page</h1>
+<%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
-<h2>Discover new events:</h2>
-<%= link_to "Swipe page", new_swipe_path %>
+<h1><%= current_user.first_name %> <%= current_user.last_name %>'s calendar page</h1>
 
 <h2>Events you liked:</h2>
 
