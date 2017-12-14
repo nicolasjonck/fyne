@@ -1,19 +1,56 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "inactive", fyne_color: "active" %>
+
 <% if @event != nil %>
 
-<%= image_tag "#{@event.photo}" %>
-  <h1>
-    <%= @event.name %>
-  </h1>
-  <%= simple_form_for(@swipe) do |f|  %>
-    <%= f.collection_radio_buttons :interested, [[false, 'Dislike'] ,[true, 'Like']], :first, :last %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :event_id, :value => @event.id %>
-    <%= f.submit %>
-  <% end %>
+<div class="container">
+  <div class="row row-card">
+    <div class="col-xs-12">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
+        <div class="card-description">
+          <h2><%= @event.name %></h2>
+          <p><%= @event.subcategory %></p>
+        </div>
+        <a class="card-link" href="#" ></a>
+      </div>
+    </div>
+  </div>
+  <div class="row row-controls">
+    <div class="col-xs-12">
+      <div class="controls">
+        <div class="control-btn btn-dislike">
+          <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: false}), method: :post do %>
+            <i class="fa fa-times fa-3x button dislike" aria-hidden="true"></i>
+          <% end %>
+        </div>
+        <div class="control-btn btn-like">
+          <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: true}), method: :post do %>
+              <i class="fa fa-heart fa-3x button like" aria-hidden="true"></i>
+            <%#= image_tag "like.png", {class: "img-circle button"}%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- if all the events have already been swiped by the current_user : -->
 
 <% else %>
-  <h1>You have swiped all the events</h1>
-  <%= link_to "See your calendar", swipes_path %>
+<div class="container">
+  <div class="row">
+    <div class="walter text-center">
+      <h1>Introducing Walter</h1>
+      <p>The #1 event finder in the world</p>
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+       width="200" height="200"
+       viewBox="0 0 252 252"
+       style=";fill:#000000;"
+       class="icon icons8-walter-white"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,252v-252h252v252z" fill="none"></path><g id="Layer_1"><g><path d="M195.3,154.35c-12.159,0 -22.05,-9.891 -22.05,-22.05c0,-12.159 9.891,-22.05 22.05,-22.05c15.8697,0 22.05,3.8241 22.05,13.6521c0,13.293 -10.6911,30.4479 -22.05,30.4479z" fill="#e8d47b"></path><g fill="#ba9b48"><path d="M195.3,113.4c17.4573,0 18.9,4.9644 18.9,10.5021c0,11.4156 -9.5256,27.2979 -18.9,27.2979c-10.4202,0 -18.9,-8.4798 -18.9,-18.9c0,-10.4202 8.4798,-18.9 18.9,-18.9M195.3,107.1c-13.9167,0 -25.2,11.2833 -25.2,25.2c0,13.9167 11.2833,25.2 25.2,25.2c13.9167,0 25.2,-19.6812 25.2,-33.5979c0,-13.9167 -11.2833,-16.8021 -25.2,-16.8021z"></path></g></g><g><path d="M56.7,154.35c-11.3589,0 -22.05,-17.1549 -22.05,-30.4479c0,-9.828 6.1803,-13.6521 22.05,-13.6521c12.159,0 22.05,9.891 22.05,22.05c0,12.159 -9.8973,22.05 -22.05,22.05z" fill="#e8d47b"></path><g fill="#ba9b48"><path d="M56.7,113.4c10.4202,0 18.9,8.4798 18.9,18.9c0,10.4202 -8.4798,18.9 -18.9,18.9c-9.3744,0 -18.9,-15.8823 -18.9,-27.2979c0,-5.5377 1.4427,-10.5021 18.9,-10.5021M56.7,107.1c-13.9167,0 -25.2,2.8854 -25.2,16.8021c0,13.9167 11.2833,33.5979 25.2,33.5979c13.9167,0 25.2,-11.2833 25.2,-25.2c0,-13.9167 -11.2833,-25.2 -25.2,-25.2z"></path></g></g><g><g fill="#ffeea3"><path d="M126,236.25c-35.2107,0 -72.45,-44.8434 -72.45,-68.9598v-82.2402h144.9v82.2402c0,24.1164 -37.2393,68.9598 -72.45,68.9598z"></path></g><g fill="#ba9b48"><path d="M195.3,88.2v79.0902c0,23.0139 -35.6202,65.8098 -69.3,65.8098c-33.6798,0 -69.3,-42.7959 -69.3,-65.8098v-79.0902h138.6M201.6,81.9h-151.2v85.3902c0,26.3277 38.4867,72.1098 75.6,72.1098c37.1133,0 75.6,-45.7821 75.6,-72.1098v-85.3902z"></path></g></g><g><path d="M126,97.2027c-97.398,0 -114.4899,-19.3977 -116.55,-22.4154v-2.3373h43.7976l6.3,-63h132.9048l6.3,63h43.7976v2.4129c-1.7199,2.6334 -17.8857,22.3398 -116.55,22.3398z" fill="#839cb2"></path><g fill="#66798f"><path d="M189.5985,12.6l5.733,57.33l0.567,5.67h5.7015h35.8218c-7.0119,5.5944 -31.8024,18.4527 -111.4218,18.4527c-79.0272,0 -104.1075,-12.7953 -111.3273,-18.4527h35.7273h5.7015l0.567,-5.67l5.733,-57.33h63.6615h63.5355M195.3,6.3c0,0 -44.73,0 -69.237,0c-24.507,0 -69.363,0 -69.363,0l-6.3,63h-44.1v6.3c0,0 9.0846,24.7527 119.7,24.7527c111.1509,0 119.7,-24.7527 119.7,-24.7527v-6.3h-44.1l-6.3,-63z"></path></g></g><g><path d="M151.2,148.05c-4.3596,0 -8.5491,-2.6523 -10.9305,-6.93l-6.7662,-20.4372l-0.1764,-0.2961c-1.4427,-2.394 -4.0824,-3.8871 -6.9048,-3.8871c-2.8476,0 -5.3109,1.5309 -6.5961,4.095c-4.0383,7.5033 -8.1711,20.5506 -8.3412,21.105c-1.6065,3.5406 -6.1425,6.3504 -10.6848,6.3504h-25.6473c-4.7754,0 -8.7381,-2.9232 -10.0989,-7.4466l-11.5038,-27.8271v-2.5263h144.9v2.52l-11.403,27.531c-1.4616,4.8258 -5.4243,7.7427 -10.1997,7.7427h-25.6473z" fill="#839cb2"></path><g fill="#66798f"><path d="M194.7834,113.4l-10.6407,25.6977l-0.1197,0.2961l-0.0945,0.3024c-0.9513,3.1626 -3.7296,5.2038 -7.0812,5.2038h-25.6473c-3.0744,0 -6.0606,-1.8459 -7.9065,-4.8573l-6.6906,-20.0277l-0.2205,-0.6552l-0.3528,-0.5922c-1.8333,-3.0492 -5.0589,-5.0463 -8.5932,-5.3676h67.347M125.4015,113.4c-3.6288,0.3339 -6.7158,2.4318 -8.3097,5.6259c-3.8682,7.1757 -7.7301,18.9504 -8.4924,21.3255c-1.3104,2.6082 -4.6053,4.5486 -7.7994,4.5486h-25.6473c-3.3516,0 -6.1299,-2.0412 -7.0749,-5.1975l-0.0945,-0.3024l-0.1197,-0.2961l-10.647,-25.704h68.1849M201.6,107.1h-151.2v6.3l11.6424,28.1106c1.7073,5.7015 6.8355,9.6894 13.1103,9.6894h25.6473c5.7015,0 11.403,-3.4209 13.6773,-8.5491c0,0 4.1706,-13.23 8.1648,-20.6388c0.819,-1.6317 2.2806,-2.3562 3.78,-2.3562c1.638,0 3.3075,0.8694 4.2021,2.3562l6.8985,20.6388c2.8476,5.1282 7.9758,8.5491 13.6773,8.5491h25.6473c6.2685,0 11.403,-3.9879 13.1103,-9.6894l11.6424,-28.1106v-6.3z"></path></g></g><rect x="9" y="7" transform="scale(6.3,6.3)" width="22" height="1" fill="#66798f"></rect><rect x="15" y="30" transform="scale(6.3,6.3)" width="10" height="1" fill="#ba9b48"></rect><g><path d="M117.18,242.55c-31.7646,0 -32.13,-29.2068 -32.13,-30.4479v-16.8021c0,-12.159 10.458,-22.05 23.31,-22.05h35.28c12.852,0 23.31,9.891 23.31,22.05v16.8021c-0.0189,1.2033 -0.8253,30.4479 -32.13,30.4479zM129.15,224.8722l25.2,-8.3979v-21.1743c0,-6.5394 -2.9169,-9.45 -9.45,-9.45h-37.8c-6.5331,0 -9.45,2.9106 -9.45,9.45v21.168l25.2,8.3979v-26.4159h6.3z" fill="#e0ac89"></path><path d="M143.64,176.4c11.1132,0 20.16,8.4798 20.16,18.9v16.7328c-0.0126,1.1151 -0.6237,27.3672 -28.98,27.3672h-17.64c-27.9216,0 -28.9548,-24.5322 -28.98,-27.2979v-16.8021c0,-10.4202 9.0468,-18.9 20.16,-18.9h35.28M126,229.2381l8.2908,-2.7657l18.9,-6.3l4.3092,-1.4301v-4.5423v-18.9c0,-10.4139 -6.8544,-12.6 -12.6,-12.6h-37.8c-5.7456,0 -12.6,2.1861 -12.6,12.6v18.9v4.5423l4.3092,1.4364l18.9,6.3l8.2908,2.7594M143.64,170.1h-35.28c-14.553,0 -26.46,11.34 -26.46,25.2v16.8021c0,0 0,33.5979 35.28,33.5979h17.64c34.9146,0 35.28,-33.5979 35.28,-33.5979v-16.8021c0,-13.86 -11.907,-25.2 -26.46,-25.2zM119.7,220.5l-18.9,-6.3v-18.9c0,-4.6368 1.4301,-6.3 6.3,-6.3h37.8c4.8699,0 6.3,1.6632 6.3,6.3v18.9l-18.9,6.3v-25.2h-12.6v25.2z" fill="#b08159"></path></g><rect x="8" y="11" transform="scale(6.3,6.3)" width="24" height="1" fill="#66798f"></rect><path d="M193.3785,50.4h-134.757l-1.89,18.9h138.537z" fill="#e74c3c"></path><g fill="#e74c3c"><path d="M58.6215,50.4h-6.3315l-1.89,18.9h6.3315z"></path><path d="M195.2685,69.3h6.3315l-1.89,-18.9h-6.3315z"></path></g></g><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path></g></g></svg>
+       <h1>Status: "Occupied"</h1>
+     </div>
+  </div>
+</div>
 
 <% end %>
+
+
