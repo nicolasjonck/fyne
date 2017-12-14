@@ -1,0 +1,106 @@
+.container {
+ height: 596px;
+}
+
+// CSS for the card
+
+.row-card {
+  height: 510px;
+}
+
+.card {
+  height: 500px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  position: relative;
+  top: 5px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1)
+}
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  border-radius: 50%;
+}
+.card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.card-description {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+}
+.card-description h2 {
+  font-size: 25px;
+  color: white;
+}
+.card-description p {
+  font-size: 14px;
+  opacity: 0.7;
+  font-weight: lighter;
+  margin-top: 10px;
+}
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover {
+  opacity: 0.1;
+}
+
+// CSS for the control buttons
+
+.row-controls {
+
+}
+
+.button {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border: 1x solid grey;
+  padding:10px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.like {
+  color: $yellow;
+}
+
+.dislike {
+  color: $red;
+}
+
+.btn-dislike {
+  position: absolute;
+  left: 70px;
+}
+
+.btn-like {
+  position: absolute;
+  right: 70px;
+}
+
+.walter {
+  text-align: center;
+  vertical-align: middle;
+}
