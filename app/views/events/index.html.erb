@@ -1,15 +1,41 @@
-<%=  link_to "Create an event", new_event_path, class: "btn btn-primary"  %>
-<%=  link_to "See my events", events_path, class: "btn btn-primary"  %>
+<!-- This is a placeholder page, the swipe index should be here -->
 
-<% @group_of_events.each do |event| %>
-  <p>
-    <%= link_to event.name, event_path(event) %>
-    (id: <%= event.id %>)
-  </p>
-<% end %>
-<!-- [
+<%= render 'shared/navbar' %>
 
-  {
+<div class="container-fyne">
+
+  <div class="text-center btn-group-fyne">
+
+      <%= link_to new_event_path, class: "btn btn-primary btn-event-index btn-fyne", id: "btn-create-new-event" do %>
+        <i class="fa fa-plus-square" aria-hidden="true" ></i>
+        <span>Create an event</span>
+      <% end %>
+
+      <%= link_to events_path, class: "btn btn-primary btn-event-index btn-fyne", id: "btn-create-new-event" do %>
+        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+        <span class="inline">See my events</span>
+      <% end %>
+  </div>
+</div>
+
+<hr id="large-line">
+
+<div class="container-fyne">
+  <div class="cards-container">
+    <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
+      <h2>
+        <%= date %>
+      </h2>
+      <% events.each do |event| %>
+      <%= render 'shared/cards', event: event%>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<!--         <%#= event.start_time [
+
+  {.strftime('%b %dth %Y')
     11-10-2016: [
   Event,
   Event,

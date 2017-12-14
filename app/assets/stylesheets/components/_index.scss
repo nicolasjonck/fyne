@@ -2,7 +2,11 @@
 @import "alert";
 @import "navbar";
 @import "banner";
+@import "cards";
+@import "buttons";
 @import "event-display";
+@import "event-index";
+@import "form";
 
 body {
   color: $black;
@@ -30,12 +34,16 @@ h6 {
 
 hr {
   border-color: $gray;
+  &#large-line {
+    width: 100vw;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 }
 
-.btn {
-  font-weight: bold;
-}
 
-a {
-  color: $gray;
+.container-fyne {
+  padding: 0px 10px;
+  margin: 10px 0px;
+  width: 100%;
 }
