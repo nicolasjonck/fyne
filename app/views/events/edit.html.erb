@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-  <h1 class="text-center">Edit your event's details</h1>
-    <%= render 'shared/form' %>
-  <br>
-  <%= link_to "Back to my event page", event_path(@event), class: "btn btn-info"  %>
-=======
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 <h1 class="text-center">Edit your event's details</h1>
-  <%= render 'shared/form' %>
-
-<%= link_to "Back to my event page", event_path(@event) %>
->>>>>>> a71ef7a1c25107e1f851e16055dbe02f0d131f6a
+<%= render 'shared/form' %>
+<br>
+<%= link_to "Back to my event page", event_path(@event), class: "btn btn-fyne btn-back-form btn-info"  %>

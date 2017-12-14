@@ -1,12 +1,15 @@
 .btn-group-fyne {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .btn-fyne {
   font-weight: bold;
   padding-top: 13px;
   padding-bottom: 13px;
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 .btn-fyne-circle {
@@ -17,4 +20,18 @@
   color: $gray;
   font-size: 12px;
   padding: 2px;
+}
+
+.btn-back-form {
+  margin-top: 47px;
+  margin-left: 13px;
+  margin-bottom: 13px;
+}
+
+.btn-fyne-login {
+  width: 90%
+}
+
+.btn-event-show {
+  margin: 10px;
 }
