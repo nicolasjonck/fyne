@@ -3,7 +3,6 @@
   <%= @user.first_name %> <%= @user.last_name %>
 <% end %>
 
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
@@ -14,6 +13,7 @@
       <% end %>
       <h1><%= @user.first_name %> <%= @user.last_name %></h1>
       <%= link_to "Update profile", edit_user_registration_path, class:"btn btn-primary" %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
     </div>
   </div>
 </div>
