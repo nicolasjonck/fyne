@@ -1,18 +1,61 @@
+<%= render 'shared/navbar' %>
+
 <% if @event != nil %>
 
-<%= image_tag "#{@event.photo}" %>
-  <h1>
-    <%= @event.name %>
-  </h1>
-  <%= simple_form_for(@swipe) do |f|  %>
-    <%= f.collection_radio_buttons :interested, [[false, 'Dislike'] ,[true, 'Like']], :first, :last %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :event_id, :value => @event.id %>
-    <%= f.submit %>
-  <% end %>
+<div class="container">
+  <div class="row row-card">
+    <div class="col-xs-12">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
+        <!-- <div class="card-category">Popular</div> -->
+        <div class="card-description">
+          <h2><%= @event.name %></h2>
+          <p><%= @event.subcategory %></p>
+        </div>
+        <a class="card-link" href="#" ></a>
+      </div>
+    </div>
+  </div>
+  <div class="row row-controls">
+    <div class="col-xs-12">
+      <div class="controls">
+        <div class="control-btn btn-dislike">
+          <a href="/swipes/new">
+          <%= image_tag "dislike.png", {class: "img-circle button"}%>
+          </a>
+        </div>
+        <div class="control-btn btn-like">
+          <a href="/swipes/new">
+          <%= image_tag "heart.png", {class: "img-circle button"}%>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%#= simple_form_for(@swipe) do |f|  %>
+    <%#= f.collection_radio_buttons :interested, [[false, 'Dislike'] ,[true, 'Like']], :first, :last %>
+    <%#= f.hidden_field :user_id, :value => current_user.id %>
+    <%#= f.hidden_field :event_id, :value => @event.id %>
+    <%#= f.submit %>
+  <%# end %>
+</div>
+
+
+
+<!-- ####### code ####### -->
+
+<%# if @event != nil %>
+
+      <%#= image_tag "#{@event.photo}" %>
+
+        <%#= @event.name %>
+        <%#= @event.subcategory %>
+
+
 
 <% else %>
   <h1>You have swiped all the events</h1>
   <%= link_to "See your calendar", swipes_path %>
 
 <% end %>
+
+
