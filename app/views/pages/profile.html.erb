@@ -6,15 +6,18 @@
 <div class="container">
   <div class="row basic-info">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <% if @user.photo? %>
-        <%= cl_image_tag @user.photo.path, class: "avatar"  %>
-      <% else %>
-        <%= image_tag 'avatar.jpg', class: "avatar" %>
-      <% end %>
+      <div class="img-div">
+        <% if @user.photo? %>
+          <%= cl_image_tag( @user.photo.path, :width=>50, :height=>50, :gravity=>"face", :crop=>"thumb", class: "avatar-profile")  %>
+        <% else %>
+          <%= image_tag 'avatar.jpg', class: "avatar-profile" %>
+        <% end %>
+      </div>
       <h1 class="inline"><%= @user.first_name %> <%= @user.last_name %></h1>
-      <p><%= @swipes_liked %></p>
-
     </div>
+  </div>
+  <div>
+    <p>Percentage of swipes liked: <%= @percentage_liked.round %>%</p>
   </div>
   <div class="row buttons"></div>
     <%= link_to "Update profile", edit_user_registration_path, class:"btn btn-primary" %>
