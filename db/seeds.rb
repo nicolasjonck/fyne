@@ -8,6 +8,8 @@
 
 # Seeding the users
 
+require 'faker'
+
 puts 'Cleaning user database...'
 User.destroy_all
 
@@ -57,7 +59,7 @@ events_attributes = [
     subcategory: "Football",
     start_time: DateTime.new(2018,2,24,20,45,0),
     end_time: DateTime.new(2018,2,24,22,45,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "24 Rue du Commandant Guilbaud",
     city: Faker::Address.city,
     zip_code: "75016",
@@ -71,7 +73,7 @@ events_attributes = [
     subcategory: "Electro",
     start_time: DateTime.new(2018,2,24,21,4,9),
     end_time: DateTime.new(2018,2,24,22,9,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "8 Boulevard de Bercy",
     city: "Paris",
     zip_code: "75012",
@@ -85,7 +87,7 @@ events_attributes = [
     subcategory: "Pop",
     start_time: DateTime.new(2017,2,24,21,4,9),
     end_time: DateTime.new(2018,2,24,22,9,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "12 Grand Place",
     city: "Brussels",
     zip_code: "1000",
@@ -99,7 +101,7 @@ events_attributes = [
     subcategory: "Rugby",
     start_time: DateTime.new(2018,2,24,20,0,0),
     end_time: DateTime.new(2018,2,24,22,0,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "Avenue de Marathon 135",
     city: "Brussels",
     zip_code: "1020",
@@ -113,7 +115,7 @@ events_attributes = [
     subcategory: "Electro",
     start_time: DateTime.new(2018,2,24,12,45,0),
     end_time: DateTime.new(2018,2,24,22,45,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "Ctra. de Montjuïc 40",
     city: "Barcelona",
     zip_code: "08038",
@@ -127,7 +129,7 @@ events_attributes = [
     subcategory: "Theatre",
     start_time: DateTime.new(2018,2,24,19,0,0),
     end_time: DateTime.new(2018,2,24,22,0,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "Carrer de Vila i Vilà 99",
     city: "Barcelona",
     zip_code: "08004",
@@ -141,7 +143,7 @@ events_attributes = [
     subcategory: "Gardening",
     start_time: DateTime.new(2017,2,24,21,4,9),
     end_time: DateTime.new(2018,2,24,22,9,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "21 Passeig de Picasso",
     city: "Barcelona",
     zip_code: "08003",
@@ -155,7 +157,7 @@ events_attributes = [
     subcategory: "Food tasting",
     start_time: DateTime.new(2018,4,16,12,0,0),
     end_time: DateTime.new(2018,4,18,22,0,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "Gran Via",
     city: "Barcelona",
     zip_code: "08028",
@@ -205,7 +207,7 @@ events_not_swiped_attributes = [
     subcategory: "Football",
     start_time: DateTime.new(2018,2,25,20,45,0),
     end_time: DateTime.new(2018,2,25,22,45,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "28 Rue du Commandant Guilbaud",
     city: Faker::Address.city,
     zip_code: "75016",
@@ -218,7 +220,7 @@ events_not_swiped_attributes = [
     subcategory: "Football",
     start_time: DateTime.new(2018,2,25,20,45,0),
     end_time: DateTime.new(2018,2,25,22,45,0),
-    photo: "",
+    photo: "https://picsum.photos/200/300/?random",
     street_address: "28 Rue du Commandant Guilbaud",
     city: Faker::Address.city,
     zip_code: "75016",
@@ -227,6 +229,24 @@ events_not_swiped_attributes = [
     user_id: User.last.id,
   },
 ]
+
+50.times do
+  events_not_swiped_attributes << {
+    name: "#{Faker::Name.name}'s concert",
+    category: "Music",
+    subcategory: "Alternative",
+    start_time: DateTime.new(2018,2,25,20,45,0),
+    end_time: DateTime.new(2018,2,25,22,45,0),
+    photo: "https://picsum.photos/200/300/?random",
+    street_address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    zip_code: Faker::Address.zip_code,
+    state: Faker::Address.state,
+    country: Faker::Address.country,
+    user_id: User.first.id,
+  }
+  puts "#{events_not_swiped_attributes.last[:name]} added to the array"
+end
 
 Event.create!(events_not_swiped_attributes)
 puts 'Finished with events not swiped'

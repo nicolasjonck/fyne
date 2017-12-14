@@ -3,8 +3,8 @@
 
 <% @group_of_events.each do |event| %>
   <p>
-    <%= event.name %>
-    <%= event.id %>
+    <%= link_to event.name, event_path(event) %>
+    (id: <%= event.id %>)
   </p>
 <% end %>
 <!-- [

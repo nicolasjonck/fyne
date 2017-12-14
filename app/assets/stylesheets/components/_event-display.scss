@@ -1,0 +1,37 @@
+.event-photo-container {
+  width: 100vw;
+  height: 420px;
+  overflow: hidden;
+}
+
+.event-photo {
+  width: 100vw;
+  margin: -60px 0px;
+// Quand toggle:
+// * bouger position à négatif
+// * width: 100
+}
+
+.category-tag-sports {
+  background: rgba(126,211,33,0.40);
+  border-radius: 8px;
+  font-size: 12px;
+  padding-left: 9px;
+  padding-right: 9px;
+  margin-bottom: 6px;
+  display: inline-block;
+  color: $black;
+  margin: 0px;
+}
+
+.inline {
+  display: inline;
+}
+
+.indication {
+  padding-left: 23px;
+}
+
+.e-info {
+  margin: 10px 0px;
+}
