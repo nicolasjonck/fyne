@@ -16,7 +16,8 @@
   color: white;
   position: relative;
   top: 5px;
-  border-radius: 4px
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1)
 }
 .card-user {
   position: absolute;
@@ -34,7 +35,7 @@
 }
 .card-description {
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   left: 10px;
 }
 .card-description h2 {
@@ -45,6 +46,7 @@
   font-size: 14px;
   opacity: 0.7;
   font-weight: lighter;
+  margin-top: 10px;
 }
 .card-link {
   position: absolute;
@@ -68,6 +70,24 @@
 
 .button {
   width: 80px;
+  height: 80px;
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border: 1x solid grey;
+  padding:10px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.like {
+  color: $yellow;
+}
+
+.dislike {
+  color: $red;
 }
 
 .btn-dislike {
@@ -78,4 +98,9 @@
 .btn-like {
   position: absolute;
   right: 70px;
+}
+
+.walter {
+  text-align: center;
+  vertical-align: middle;
 }
