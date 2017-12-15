@@ -14,8 +14,9 @@
       <h1 class="inline"><%= @user.first_name %> <%= @user.last_name %></h1>
     </div>
   </div>
-  <div class="row buttons"></div>
-    <%= link_to "Update profile", edit_user_registration_path, class:"btn btn-primary" %>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+  <div class="row buttons btn-group-fyne ">
+    <%= link_to "Update profile", edit_user_registration_path, class: "btn btn-fyne btn-primary" %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-fyne btn-danger" %>
+  </div>
 </div>
 

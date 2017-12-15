@@ -1,0 +1,39 @@
+<div class="card-container-index">
+  <div class="event-info-box">
+    <div id="event-hour-box">
+      <%= event.start_time.strftime('%H:%M') %>
+    </div>
+    <div id="event-info-aest-bg-box">
+      <div id="event-info-box-aesthetic-background">
+      </div>
+      <div id="event-subcategory-box">
+        <%= event.subcategory %>
+      </div>
+    </div>
+  </div>
+
+      <% if event.photo? %>
+        <% event_image = event.photo %>
+      <% else %>
+        <% event_image = "event-placeholder-photo-banner.jpg" %>
+      <% end %>
+
+  <div class="card-wrapper-index">
+    <div class="card-index" style="background-image: url('<%= image_path event_image %>');" >
+      <div class="card-description-index">
+        <h2><%= event.name %></h2>
+        <p>
+          <i class="fa fa-map-marker" aria-hidden="true" ></i>
+          <span><%= event.street_address %> <%= event.zip_code %> <%= event.city %>, <%= event.country %></span>
+        </p>
+      </div>
+    <%= link_to '', event_path(event), class: "card-link-index" %>
+  </div>
+
+    <div class="card-footer-index">
+      <p>
+      <%= pluralize((event.swipe.where(interested: true).count), 'person') %> interested
+      </p>
+    </div>
+  </div>
+</div>

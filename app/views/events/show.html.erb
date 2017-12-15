@@ -1,7 +1,18 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
+
+      <% if @event.photo? %>
+        <% event_image = @event.photo %>
+      <% else %>
+        <% event_image = "event-placeholder-photo-banner.jpg" %>
+      <% end %>
+
 <div class="event-photo-container">
-  <%= image_tag "event-placeholder-photo.jpg", class: "event-photo" %>
+  <%= image_tag event_image, class: "event-photo" %>
 </div>
+
+
+
+
 
 <div class="container">
   <div id="main-info">
@@ -55,7 +66,7 @@
 
 <% if @event.user == current_user %>
   <div class="text-center">
-    <%= link_to "Edit my event", edit_event_path(@event), class: "btn btn-primary" %>
-    <%= link_to "Delete my event", event_path(@event), method: :delete, class: "btn btn-primary" %>
+    <%= link_to "Delete my event", event_path(@event), method: :delete, class: "btn btn-danger btn-event-show btn-fyne" %>
+    <%= link_to "Edit my event", edit_event_path(@event), class: "btn btn-primary   btn-fyne" %>
   </div>
 <% end %>

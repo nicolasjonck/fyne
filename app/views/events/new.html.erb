@@ -1,5 +1,8 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 <h1 class="text-center">Enter your event's details</h1>
-  <%= render 'shared/form' %>
 
-<%= link_to "Back to home page", root_path, class: "btn btn-primary" %>
+<div>
+  <%= render 'shared/form' %>
+</div>
+
+<%= link_to "Back to home page", root_path, class: "btn btn-fyne btn-back-form btn-info" %>
