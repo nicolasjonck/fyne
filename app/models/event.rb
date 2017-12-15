@@ -11,5 +11,5 @@ class Event < ApplicationRecord
   # validates :zip_code, presence: true
   validates :country, presence: true
 
-   has_attachments :photos, maximum: 3
+  has_attachment :photouploaded
 end
