@@ -9,3 +9,4 @@
 
 console.log('Hello World from Webpacker')
 import './categories_dropdown';
+import './tabs';
