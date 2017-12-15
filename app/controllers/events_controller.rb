@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    # event = EventService.new.call
     #afterwards, need to do booking
   end
 
