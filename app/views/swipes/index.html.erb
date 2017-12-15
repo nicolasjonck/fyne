@@ -1,17 +1,123 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
-<h1><%= current_user.first_name %> <%= current_user.last_name %>'s calendar page</h1>
+<div class="container-fyne">
 
-<h2>Events you liked:</h2>
+  <div class="text-center">
+      <%= link_to new_event_path, class: "btn btn-primary btn-fyne", id: "btn-create-new-event" do %>
+        <i class="fa fa-plus-square" aria-hidden="true" ></i>
+        <span>Create an event</span>
+      <% end %>
+  </div>
+</div>
 
-<ul>
+<hr id="large-line">
+
+<h1 class="text-center">Events you liked:</h1>
+<br>
+
+<div class="tabs tabs-fyne">
+  <a href="#" class="tab active" data-target="all">
+    All
+  </a>
+  <a href="#" class="tab" data-target="today">
+    Today
+  </a>
+  <a href="#" class="tab" data-target="tomorrow">
+    Tomorrow
+  </a>
+  <a href="#" class="tab" data-target="this_weekend">
+    This weekend
+  </a>
+</div>
+
+<div class="tab-content" id="all">
+  <div class="container-fyne">
+    <div class="cards-container-index">
   <% @swipes_liked.each do |swipe| %>
-    <li>
-      <h3><%= swipe.event.name %></h3>
-      <p>Category: <%= swipe.event.category %>/<%= swipe.event.subcategory %></p>
-      <p>Date: <%= swipe.event.start_time %> - <%= swipe.event.end_time %></p>
-      <p>Location: <%= swipe.event.street_address %> <%= swipe.event.zip_code %> <%= swipe.event.city %>, <%= swipe.event.country %></p>
-      <p>Created by: <%= swipe.event.user.first_name %> <%= swipe.event.user.last_name %></p>
-    </li>
+    <h2>
+    <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
+    </h2>
+    <%= render 'shared/cards', event: swipe.event%>
   <% end %>
-</ul>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content hidden" id="today">
+  <div class="container-fyne">
+    <div class="cards-container-index">
+  <% @swipes_liked.each do |swipe| %>
+    <% if (swipe.event.start_time.to_date == Date.today) %>
+      <h2>
+      <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
+      </h2>
+      <%= render 'shared/cards', event: swipe.event%>
+    <% end %>
+  <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content hidden" id="tomorrow">
+  <div class="container-fyne">
+    <div class="cards-container-index">
+  <% @swipes_liked.each do |swipe| %>
+    <% if (swipe.event.start_time.to_date == Date.tomorrow) %> %>
+      <h2>
+      <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
+      </h2>
+      <%= render 'shared/cards', event: swipe.event%>
+    <% end %>
+  <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content hidden" id="tomorrow">
+  <div class="container-fyne">
+    <div class="cards-container-index">
+  <% @swipes_liked.each do |swipe| %>
+    <% if (swipe.event.start_time.to_date == ( DateTime.now.end_of_week || DateTime.now.end_of_week.yesterday )) %> %>
+      <h2>
+      <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
+      </h2>
+      <%= render 'shared/cards', event: swipe.event%>
+    <% end %>
+  <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for(:js) do %>
+  <%= javascript_tag do %>
+const tabs = document.querySelectorAll('.tab')
+const tabContents = document.querySelectorAll('.tab-content')
+
+
+tabs.forEach((tab) => {
+  tab.addEventListener('click', (event) => {
+    event.preventDefault();
+    let target = event.currentTarget.dataset.target
+    clearTabContents()
+    document.getElementById(target).classList.remove('hidden')
+  clearTabs()
+  tab.classList.add('active')
+  })
+})
+
+
+function clearTabContents() {
+  tabContents.forEach((tabContent) => {
+    tabContent.classList.add('hidden')
+  })
+}
+
+function clearTabs() {
+  tabs.forEach((tab) => {
+    tab.classList.remove('active')
+  })
+}
+
+  <% end %>
+<% end %>
+
