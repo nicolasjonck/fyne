@@ -66,7 +66,7 @@
 
 <% if @event.user == current_user %>
   <div class="text-center">
+    <%= link_to "Delete my event", event_path(@event), method: :delete, class: "btn btn-danger btn-event-show btn-fyne" %>
     <%= link_to "Edit my event", edit_event_path(@event), class: "btn btn-primary   btn-fyne" %>
-    <%= link_to "Delete my event", event_path(@event), method: :delete, class: "btn btn-primary btn-event-show btn-fyne" %>
   </div>
 <% end %>
