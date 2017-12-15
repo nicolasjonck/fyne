@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
     new_swipe_path
   end
 
+  # def after_update_path_for(resource)
+  #   profile_path
+  # end
+
+  def user_root_path
+    profile_path
+  end
+
+
   protected
 
   def configure_permitted_parameters

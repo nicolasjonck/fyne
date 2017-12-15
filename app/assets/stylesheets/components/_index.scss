@@ -2,6 +2,9 @@
 @import "alert";
 @import "navbar";
 @import "banner";
+@import "cards";
+@import "buttons";
+@import "form";
 
 body {
   color: $black;
@@ -29,12 +32,19 @@ h6 {
 
 hr {
   border-color: $gray;
-}
-
-.btn {
-  font-weight: bold;
+  &#large-line {
+    width: 100vw;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 }
 
 a {
   color: $gray;
+}
+
+.container-fyne {
+  padding: 0px 10px;
+  margin: 10px 0px;
+  width: 100%;
 }

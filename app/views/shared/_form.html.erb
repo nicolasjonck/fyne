@@ -2,7 +2,7 @@
 <div class="container">
   <div class="background-card">
     <div class="row">
-        <%= simple_form_for(@event) do |f| %>
+      <%= simple_form_for(@event) do |f| %>
       <div class="col-xs-12 col-lg-6">
         <%= f.input :name %>
         <%= f.input :photo %>
@@ -17,8 +17,9 @@
   <div class="background-card">
     <div class="row">
       <div class="col-xs-12 col-lg-6">
-        <%= f.input :start_time %>
-        <%= f.input :end_time %>
+          <%= f.input :start_time %>
+
+          <%= f.input :end_time %>
       </div>
 
       <div class="col-xs-12 col-lg-6">
@@ -31,10 +32,12 @@
     </div>
   </div>
 
+
+
   <div class="row">
     <div class="col-xs-12">
       <div class="text-center">
-        <%= f.submit "Save changes", class: "btn btn-primary" %>
+        <%= f.submit "Save changes", class: "btn btn-fyne btn-success" %>
         <% end %>
       </div>
     </div>

@@ -10,16 +10,19 @@
   justify-content: center;
 }
 .banner h1 {
-  font-size: 95px;
+  color: white;
+  font-size: 105px;
   font-weight: bold;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  text-shadow: -3px 0 black, 0 3px $red, 3px 0 $green, 0 -3px $orange;
+  // text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
 .banner p {
-  font-size: 45px;
-  font-weight: lighter;
-  color: rgb(255, 255, 255);
-  opacity: 0.85;
-  margin-bottom: 30px;
+  font-size: 28px;
+  // font-weight: lighter;
+  color: white;
+  opacity: 1;
+  margin-top: 15px;
+  margin-bottom: 60px;
 }
 
 .btn-start {
