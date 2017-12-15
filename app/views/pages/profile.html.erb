@@ -4,15 +4,19 @@
 <% end %>
 
 <div class="container">
-  <div class="row basic-info">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+  <div class="row user-img-name">
+    <div class="user-img">
       <% if @user.photo? %>
-        <%= cl_image_tag @user.photo.path, class: "avatar"  %>
+        <%= cl_image_tag( @user.photo.path, :width=>50, :height=>50, :gravity=>"face", :crop=>"thumb", class: "avatar-profile")  %>
       <% else %>
-        <%= image_tag 'avatar.jpg', class: "avatar" %>
+        <%= image_tag 'avatar.jpg', class: "avatar-profile" %>
       <% end %>
-      <h1 class="inline"><%= @user.first_name %> <%= @user.last_name %></h1>
     </div>
+    <h1 class="user-name"><%= @user.first_name %> <%= @user.last_name %></h1>
+  </div>
+  <div class="row user-info">
+    <p>City: <%= @user.city %></p>
+    <p>Percentage of swipes liked: <%= @percentage_liked.round %>%</p>
   </div>
   <div class="row buttons btn-group-fyne ">
     <%= link_to "Update profile", edit_user_registration_path, class: "btn btn-fyne btn-primary" %>
