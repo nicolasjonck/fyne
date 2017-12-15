@@ -12,3 +12,15 @@
 .user-info {
   margin: 0 5%;
 }
+
+.container-signup {
+  margin: 10px 0;
+  h2 {
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  p {
+    color: $gray;
+    margin-bottom: 0;
+  }
+}
