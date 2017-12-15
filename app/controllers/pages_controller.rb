@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   def profile
     @user = current_user
     @percentage_liked = 100 * (@swipes_liked / @swipes)
+
   end
 
   private
