@@ -1,0 +1,11 @@
+.form-inline {
+  display: flex;
+  .form-control {
+    padding: 0;
+  }
+}
+
+.form-control.datetime.required::placeholder {
+  padding: 0;
+
+}
