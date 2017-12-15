@@ -1,13 +1,18 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
-      <% if @event.photo? %>
-        <% event_image = @event.photo %>
-      <% else %>
-        <% event_image = "event-placeholder-photo-banner.jpg" %>
-      <% end %>
+
 
 <div class="event-photo-container">
-  <%= image_tag event_image, class: "event-photo" %>
+
+  <% if @event.photos%>
+    <% @event.photos.each do |photo| %>
+      <%= cl_image_tag photo.path, class: "event-photo" %>
+    <% end %>
+  <% else %>
+    <%= image_tag 'event-placeholder-photo.jpg', class: "event-photo"  %>
+ <% end %>
+
+
 </div>
 
 

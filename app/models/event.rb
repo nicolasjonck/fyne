@@ -10,4 +10,6 @@ class Event < ApplicationRecord
   validates :city, presence: true
   validates :zip_code, presence: true
   validates :country, presence: true
+
+   has_attachments :photos, maximum: 3
 end
