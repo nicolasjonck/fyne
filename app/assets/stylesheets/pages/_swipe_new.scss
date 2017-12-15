@@ -1,15 +1,15 @@
 .container-new {
-  height: 596px;
+  height: calc(100vh - 71px);
 }
 
 // CSS for the card
 
 .row-card {
-  height: 510px;
+  height: 76vh;
 }
 
 .card {
-  height: 500px;
+  height: calc(75vh - 3px);
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   background-position: center;

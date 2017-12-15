@@ -11,7 +11,7 @@
 }
 
 .banner-logo {
-  margin-top: 3%;
+  margin-top: 3vh;
 }
 
 .banner h1 {
@@ -20,6 +20,7 @@
   font-weight: bold;
   text-shadow: -3px 0 black, 0 3px $red, 3px 0 $green, 0 -3px $orange;
   margin-top: 0;
+  margin-bottom: 3vh;
   // text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
 .banner p {
@@ -27,8 +28,7 @@
   // font-weight: lighter;
   color: white;
   opacity: 1;
-  margin-top: 2%;
-  margin-bottom: 10%;
+  margin-bottom: 4vh;
 }
 
 .btn-facebook {
