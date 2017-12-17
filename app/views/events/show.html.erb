@@ -9,7 +9,7 @@
   <% elsif @event.photo %>
       <%= image_tag @event.photo, class: "event-photo" %>
   <% else %>
-    <%= image_path 'event-placeholder-photo.jpg', class: "event-photo"  %>
+    <%= image_tag "event-placeholder-photo.jpg", class: "event-photo"  %>
  <% end %>
 
 
