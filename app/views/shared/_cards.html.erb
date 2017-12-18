@@ -3,10 +3,10 @@
     <div id="event-hour-box">
       <%= event.start_time.strftime('%H:%M') %>
     </div>
-    <div id="event-info-aest-bg-box">
+    <div class= "<%= event.category.downcase  %>">
       <div id="event-info-box-aesthetic-background">
       </div>
-      <div id="event-subcategory-box">
+      <div id="event-subcategory-box" >
         <%= event.subcategory %>
       </div>
     </div>
