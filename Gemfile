@@ -1,6 +1,12 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
+gem "coffee-rails"
+gem "gmaps4rails"
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
+gem 'geocoder'
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'

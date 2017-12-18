@@ -11,5 +11,8 @@ class Event < ApplicationRecord
   # validates :zip_code, presence: true
   validates :country, presence: true
 
-   has_attachments :photos, maximum: 3
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
+  has_attachments :photos, maximum: 3
 end
