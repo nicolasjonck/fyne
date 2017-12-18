@@ -1,3 +1,12 @@
+<!-- Setting variables -->
+
+<% array_of_swiped_events = @swipes_liked.map { |swipe| swipe.event } %>
+
+<% array_of_dates = array_of_swiped_events.map { |event| event.start_time }.sort!  %>
+<% array_of_dates.map!{|date| date.strftime('%A %dth, %b %Y') }.uniq! %>
+
+<!-- Display -->
+
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
 <div class="container-fyne">
@@ -34,30 +43,42 @@
   </a>
 </div>
 
+
 <div class="tab-content" id="all">
   <div class="container-fyne">
     <div class="cards-container-index">
-  <% @swipes_liked.each do |swipe| %>
-    <h2>
-    <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
-    </h2>
-    <%= render 'shared/cards', event: swipe.event%>
-  <% end %>
+
+      <% array_of_dates.each do |date| %>
+        <% if date >= Date.today.strftime('%A %dth, %b %Y') %>
+          <h2><%= date %></h2>
+          <% array_of_swiped_events.each do |event| %>
+            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+              <%= render 'shared/cards', event: event %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>
+
 
 <div class="tab-content hidden" id="today">
   <div class="container-fyne">
     <div class="cards-container-index">
-  <% @swipes_liked.each do |swipe| %>
-    <% if (swipe.event.start_time.to_date == Date.today) %>
-      <h2>
-      <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
-      </h2>
-      <%= render 'shared/cards', event: swipe.event%>
-    <% end %>
-  <% end %>
+
+      <% array_of_dates.each do |date| %>
+        <% if date == Date.today.strftime('%A %dth, %b %Y') %>
+          <h2><%= date %></h2>
+          <% array_of_swiped_events.each do |event| %>
+            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+              <%= render 'shared/cards', event: event %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>
@@ -65,29 +86,48 @@
 <div class="tab-content hidden" id="tomorrow">
   <div class="container-fyne">
     <div class="cards-container-index">
-  <% @swipes_liked.each do |swipe| %>
-    <% if (swipe.event.start_time.to_date == Date.tomorrow) %> %>
-      <h2>
-      <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
-      </h2>
-      <%= render 'shared/cards', event: swipe.event%>
-    <% end %>
-  <% end %>
+
+      <% array_of_dates.each do |date| %>
+        <% if date == Date.tomorrow.strftime('%A %dth, %b %Y') %>
+          <h2><%= date %></h2>
+          <% array_of_swiped_events.each do |event| %>
+            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+              <%= render 'shared/cards', event: event %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>
 
-<div class="tab-content hidden" id="tomorrow">
+<div class="tab-content hidden" id="this_weekend">
   <div class="container-fyne">
     <div class="cards-container-index">
-  <% @swipes_liked.each do |swipe| %>
-    <% if (swipe.event.start_time.to_date == ( DateTime.now.end_of_week || DateTime.now.end_of_week.yesterday )) %> %>
-      <h2>
-      <%= swipe.event.start_time.strftime('%A %dth, %b %Y') %>
-      </h2>
-      <%= render 'shared/cards', event: swipe.event%>
-    <% end %>
-  <% end %>
+
+      <% array_of_dates.each do |date| %>
+        <% if date == DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y') %>
+          <h2><%= date %></h2>
+          <% array_of_swiped_events.each do |event| %>
+            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+              <%= render 'shared/cards', event: event %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% array_of_dates.each do |date| %>
+        <% if date == DateTime.now.end_of_week.strftime('%A %dth, %b %Y') %>
+          <h2><%= date %></h2>
+          <% array_of_swiped_events.each do |event| %>
+            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+              <%= render 'shared/cards', event: event %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>
