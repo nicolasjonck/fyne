@@ -55,14 +55,14 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:success] = "Your event has been successfully deleted"
-    redirect_to root_path
+    redirect_to new_swipe_path
   end
 
 
   private
 
   def event_params
-    params.require(:event).permit(:name, :user, :category, :subcategory, :start_time, :end_time, :street_address, :city, :zip_code, :state, :country, photos: [])
+    params.require(:event).permit(:name, :user, :category, :subcategory, :start_time, :end_time, :street_address, :city, :zip_code, :state, :country, :photo, :photouploaded)
   end
 
   def set_event

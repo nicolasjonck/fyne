@@ -12,16 +12,17 @@
     </div>
   </div>
 
-  <% if event.photos? %>
-    <% event.photos.each do |photo| %>
-      <% event_image = cl_image_tag photo.path %>
-    <% end %>
+  <% if event.photouploaded %>
+    <% event_image = cl_image_path event.photouploaded.path %>
+  <% elsif event.photo %>
+    <% event_image = image_path event.photo %>
   <% else %>
     <% event_image = image_path "event-placeholder-photo-banner.jpg" %>
   <% end %>
 
   <div class="card-wrapper-index">
-    <div class="card-index" style="background-image: url('<%= event_image %>');" >
+    <div class="card-index" style="background-image: url('<%= event_image %>')" >
+
       <div class="card-description-index">
         <h2><%= event.name %></h2>
         <p>

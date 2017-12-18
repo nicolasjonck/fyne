@@ -7,8 +7,13 @@
     <% @event.photos.each do |photo| %>
       <%= cl_image_tag photo.path, class: "event-photo" %>
     <% end %>
+
+  <% if @event.photouploaded %>
+    <%= cl_image_tag @event.photouploaded.path, class: "event-photo" %>
+  <% elsif @event.photo %>
+      <%= image_tag @event.photo, class: "event-photo" %>
   <% else %>
-    <%= image_tag 'event-placeholder-photo.jpg', class: "event-photo"  %>
+    <%= image_tag "event-placeholder-photo.jpg", class: "event-photo"  %>
  <% end %>
 </div>
 
@@ -41,6 +46,9 @@
           </td>
         </tr>
       </table>
+      <div id="map">
+        <%= render 'shared/map' %>
+      </div>
     </div>
 
   <hr>
