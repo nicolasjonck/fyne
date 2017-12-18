@@ -143,21 +143,22 @@
 
 
     var handler = Gmaps.build('Google');
+    console.log(handler)
     handler.buildMap({
       provider: {
         scrollwheel: false,
         styles: styles
       },
       internal: { id: 'map' }}, function() {
-        markers = handler.addMarkers(<%= raw @marker.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-          handler.enableScrollWheelZoom();
-        }
+        //markers = handler.addMarkers(<%= raw @marker.to_json %>);
+        // handler.bounds.extendWith(markers);
+        // handler.fitMapToBounds();
+        // // if (markers.length == 0) {
+        //   handler.getMap().setZoom(2);
+        // } else if (markers.length == 1) {
+        //   handler.getMap().setZoom(14);
+        //   handler.enableScrollWheelZoom();
+        // }
     });
   </script>
 <% end %>
