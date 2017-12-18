@@ -32,11 +32,13 @@
   <div class="container-fyne">
     <div class="cards-container-index">
       <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
-        <h2>
-          <%= date %>
-        </h2>
-        <% events.each do |event| %>
-          <%= render 'shared/cards', event: event%>
+        <% if date >= Date.today.strftime('%A %dth, %b %Y') %>
+          <h2>
+            <%= date %>
+          </h2>
+          <% events.each do |event| %>
+            <%= render 'shared/cards', event: event%>
+          <% end %>
         <% end %>
       <% end %>
     </div>
