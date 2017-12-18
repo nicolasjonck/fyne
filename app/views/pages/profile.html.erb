@@ -6,7 +6,9 @@
 <div class="container">
   <div class="row user-img-name">
     <div class="user-img">
-      <% if @user.photo? %>
+      <% if current_user.facebook_picture_url? %>
+        <%= image_tag current_user.facebook_picture_url, class: "avatar-profile" %>
+      <% elsif @user.photo? %>
         <%= cl_image_tag( @user.photo.path, :width=>50, :height=>50, :gravity=>"face", :crop=>"thumb", class: "avatar-profile")  %>
       <% else %>
         <%= image_tag 'avatar.jpg', class: "avatar-profile" %>
