@@ -13,7 +13,7 @@
   </div>
 
   <% if event.photouploaded %>
-    <% event_image = cl_image_tag event.photouploaded.path %>
+    <% event_image = cl_image_path event.photouploaded.path %>
   <% elsif event.photo %>
     <% event_image = image_path event.photo %>
   <% else %>
