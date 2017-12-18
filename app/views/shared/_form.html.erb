@@ -5,7 +5,7 @@
       <%= simple_form_for(@event) do |f| %>
       <div class="col-xs-12 col-lg-6">
         <%= f.input :name %>
-        <%= f.input :photos, as: :attachinary %>
+        <%= f.input :photouploaded, as: :attachinary, label: 'Photo' %>
       </div>
       <div class="col-xs-12 col-lg-6">
         <%= f.input :category, prompt: 'Please choose your category', collection: ["Art & Culture", "Music", "Films & Series", "Sports", "Games", "Wellness & Health", "Spirituality", "Non-profit", "Tasting & Restauration", "Crafting", "Party", "Business", "Politics", "Other"] %>
