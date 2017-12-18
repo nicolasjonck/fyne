@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only:[:show, :edit, :update, :destroy]
+  before_action :set_event, only:[:edit, :update, :destroy]
   before_action :set_user, only:[:show, :new, :create, :edit, :update, :destroy]
 
   def index
@@ -14,10 +14,10 @@ class EventsController < ApplicationController
 
     #add when latitude and long added to event model:
     # @event = Event.where.not(latitude: nil, longitude: nil)
-
-    # @markers = Gmaps4rails.build_markers(@event) do |event, marker|
-    #   marker.lat event.latitude
-    #   marker.lng event.longitude
+    @marker = Gmaps4rails.build_markers(@event) do |event, marker|
+      marker.lat event.latitude
+      marker.lng event.longitude
+    end
   end
 
   def new
