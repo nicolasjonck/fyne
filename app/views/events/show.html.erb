@@ -2,7 +2,7 @@
 
 
 
-<div class="event-photo-container">
+<div class="event-photo-container overflow-hidden">
 
   <% if @event.photouploaded %>
     <%= cl_image_tag @event.photouploaded.path, class: "event-photo" %>
@@ -16,61 +16,7 @@
 </div>
 
 
-
-
-
-<div class="container">
-  <div id="main-info">
-    <h2> <%= @event.name.upcase %> </h2>
-    <p class="category-tag-sports"> <%= @event.subcategory.capitalize %> </p>
-  </div>
-  <div id="secondary-infos">
-    <div id="date" class="e-info">
-      <i class="fa fa-calendar-o" aria-hidden="true"></i>
-      <p class="inline"> <%= @event.start_time.strftime('%A, %b %dth at %H:%M') %> </p>
-
-      <% if @event.start_time.strftime('%b %dth %Y') == @event.end_time.strftime('%b %dth %Y') %>
-        <h6 class="indication"> <%= @event.start_time.strftime('From %b %dth %Y at %H:%M') %> to <%= @event.end_time.strftime('%H:%M') %></h6>
-      <% else %>
-        <h6 class="indication"> From <%= @event.start_time.strftime('%b %dth %Y at %H:%M') %></h6>
-        <h6 class="indication"> To <%= @event.end_time.strftime('%b %dth %Y at %H:%M') %></h6>
-      <% end %>
-    </div>
-
-    <div id="location" class="e-info">
-      <table>
-        <tr>
-          <td valign="top">
-            <i class="fa fa-map-marker" aria-hidden="true" style="padding-left: 3px; padding-right:6px"></i>
-          </td>
-          <td>
-            <p class="inline"> <%= @event.street_address %> <%= @event.zip_code %> <%= @event.city %>, <%= @event.country %></p>
-          </td>
-        </tr>
-      </table>
-      <div id="map">
-        <%= render 'shared/map' %>
-      </div>
-    </div>
-
-  <hr>
-
-  <% unless @event.user == current_user %>
-    <div id="organizer" class="e-info">
-      <table>
-        <tr>
-          <td valign="top">
-            <i class="fa fa-user" style="padding-right: 6px" aria-hidden="true"></i>
-          </td>
-          <td>
-            <p class="inline"> Organized by <%= @event.user.first_name %> <%= @event.user.last_name %></p>
-          </td>
-        </tr>
-      </table>
-    </div>
-  <% end %>
-  </div>
-</div>
+<%= render 'shared/event_infos' %>
 
 <% if @event.user == current_user %>
   <div class="text-center">
