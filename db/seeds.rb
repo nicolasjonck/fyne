@@ -59,7 +59,7 @@ events_attributes = [
     subcategory: "Football",
     start_time: DateTime.new(2017,12,18,20,45,0),
     end_time: DateTime.new(2017,12,18,22,45,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "https://cde.peru.com/ima/0/1/7/4/6/1746319/611x458/real-madrid-vs-psg.jpg",
     street_address: "24 Rue du Commandant Guilbaud",
     city: Faker::Address.city,
     zip_code: "75016",
@@ -73,7 +73,7 @@ events_attributes = [
     subcategory: "Electro",
     start_time: DateTime.new(2017,12,24,21,4,9),
     end_time: DateTime.new(2017,12,24,22,9,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "http://www.fnacspectacles.com/static/0/visuel/300/370/DJ-SNAKE_3701275070537925216.jpg?1504715964000",
     street_address: "8 Boulevard de Bercy",
     city: "Paris",
     zip_code: "75012",
@@ -87,7 +87,7 @@ events_attributes = [
     subcategory: "Pop",
     start_time: DateTime.new(2017,12,19,21,4,9),
     end_time: DateTime.new(2018,12,19,22,9,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "https://media.livenationinternational.com/lincsmedia/Media/z/y/e/1ceee867-9897-4f0f-a3fe-bd189006dc84.jpg",
     street_address: "12 Grand Place",
     city: "Brussels",
     zip_code: "1000",
@@ -101,7 +101,7 @@ events_attributes = [
     subcategory: "Rugby",
     start_time: DateTime.new(2017,12,18,20,0,0),
     end_time: DateTime.new(2017,12,18,22,0,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/1/18/Poland_vs_Belgium_2009_rugby_%282%29.jpg",
     street_address: "Avenue de Marathon 135",
     city: "Brussels",
     zip_code: "1020",
@@ -115,7 +115,7 @@ events_attributes = [
     subcategory: "Electro",
     start_time: DateTime.new(2017,12,19,12,45,0),
     end_time: DateTime.new(2017,12,19,22,45,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "http://www.apartmentbarcelona.com/blog/wp-content/uploads/2016/07/bruuuuunch.jpg",
     street_address: "Ctra. de Montjuïc 40",
     city: "Barcelona",
     zip_code: "08038",
@@ -129,7 +129,7 @@ events_attributes = [
     subcategory: "Theatre",
     start_time: DateTime.new(2017,12,24,19,0,0),
     end_time: DateTime.new(2017,12,24,22,0,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "http://c8.alamy.com/comp/D7H0TG/the-glowing-red-windmill-on-the-facade-of-famous-el-molino-cabaret-D7H0TG.jpg",
     street_address: "Carrer de Vila i Vilà 99",
     city: "Barcelona",
     zip_code: "08004",
@@ -143,7 +143,7 @@ events_attributes = [
     subcategory: "Gardening",
     start_time: DateTime.new(2017,12,23,21,4,9),
     end_time: DateTime.new(2017,12,23,22,9,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "https://www.barcelona-tourist-guide.com/images/int/attractions/parc-ciutadella/L550/parc-ciutadella-barcelona-3911.jpg",
     street_address: "21 Passeig de Picasso",
     city: "Barcelona",
     zip_code: "08003",
@@ -157,7 +157,7 @@ events_attributes = [
     subcategory: "Food tasting",
     start_time: DateTime.new(2017,12,23,12,0,0),
     end_time: DateTime.new(2017,12,23,22,0,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "https://fthmb.tqn.com/qYC5UYDFtGYWbJKMWHem1AwyAyM=/960x0/filters:no_upscale()/Food-tasting-56a2381f3df78cf7727361a9.jpg",
     street_address: "Gran Via",
     city: "Barcelona",
     zip_code: "08028",
@@ -207,7 +207,7 @@ events_not_swiped_attributes = [
     subcategory: "Football",
     start_time: DateTime.new(2017,12,23,20,45,0),
     end_time: DateTime.new(2017,12,23,22,45,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "http://www.letelegramme.fr/ar/imgproxy.php/images/2009/02/26/266630_4772189-lyon-w001a.jpg?article=20090226-1000266630&aaaammjj=20090226",
     street_address: "28 Rue du Commandant Guilbaud",
     city: Faker::Address.city,
     zip_code: "75016",
@@ -220,7 +220,7 @@ events_not_swiped_attributes = [
     subcategory: "Football",
     start_time: DateTime.new(2018,2,25,20,45,0),
     end_time: DateTime.new(2018,2,25,22,45,0),
-    photo: "https://picsum.photos/200/300/?random",
+    photo: "https://www.google.es/search?q=marseille+psg&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiD3MLP-JXYAhVESiYKHdedCXoQ_AUICygC&biw=1380&bih=780#imgrc=6dykuy8gWQ86SM:",
     street_address: "28 Rue du Commandant Guilbaud",
     city: Faker::Address.city,
     zip_code: "75016",
@@ -230,23 +230,23 @@ events_not_swiped_attributes = [
   },
 ]
 
-50.times do
-  events_not_swiped_attributes << {
-    name: "#{Faker::Name.name}'s concert",
-    category: "Music",
-    subcategory: "Alternative",
-    start_time: DateTime.new(2018,2,25,20,45,0),
-    end_time: DateTime.new(2018,2,25,22,45,0),
-    photo: "https://picsum.photos/200/300/?random",
-    street_address: Faker::Address.street_address,
-    city: Faker::Address.city,
-    zip_code: Faker::Address.zip_code,
-    state: Faker::Address.state,
-    country: Faker::Address.country,
-    user_id: User.first.id,
-  }
-  puts "#{events_not_swiped_attributes.last[:name]} added to the array"
-end
+# 50.times do
+#   events_not_swiped_attributes << {
+#     name: "#{Faker::Name.name}'s concert",
+#     category: "Music",
+#     subcategory: "Alternative",
+#     start_time: DateTime.new(2018,2,25,20,45,0),
+#     end_time: DateTime.new(2018,2,25,22,45,0),
+#     photo: "https://picsum.photos/200/300/?random",
+#     street_address: Faker::Address.street_address,
+#     city: Faker::Address.city,
+#     zip_code: Faker::Address.zip_code,
+#     state: Faker::Address.state,
+#     country: Faker::Address.country,
+#     user_id: User.first.id,
+#   }
+#   puts "#{events_not_swiped_attributes.last[:name]} added to the array"
+# end
 
 Event.create!(events_not_swiped_attributes)
 puts 'Finished with events not swiped'
