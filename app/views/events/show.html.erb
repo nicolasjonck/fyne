@@ -12,7 +12,15 @@
  <% end %>
 </div>
 
-<%= render 'shared/event_infos' %>
+<div>
+  <%= render 'shared/event_infos' %>
+</div>
+
+<% if @event.url != nil %>
+  <div class="text-center">
+    <%= link_to "Book", "#{@event.url}", class: "btn btn-success btn-event-show btn-fyne", target: :_blank %>
+  </div>
+<% end %>
 
 <% if @event.user == current_user %>
   <div class="text-center">

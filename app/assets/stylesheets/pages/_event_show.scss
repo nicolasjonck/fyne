@@ -37,5 +37,22 @@
 }
 
 .e-info {
-  margin: 10px 0px;
+  margin-bottom: 3vh;
+}
+
+#main-info {
+  position: relative;
+  margin-bottom: 4vh;
+}
+
+.share-fb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 5vh;
+  margin-right: 1vh;
+}
+
+.event-name {
+  padding-right: 5vh;
 }

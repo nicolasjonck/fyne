@@ -9,7 +9,7 @@
         <div class="">
           <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
             <div id="main-infos-new" class="card-description ">
-              <h2><%= @event.name.upcase %></h2>
+              <h2><%= @event.name %></h2>
               <p id="subcat"><%= @event.subcategory.capitalize.gsub(/_/," ")  %></p>
             </div>
           </div>
@@ -33,10 +33,11 @@
         </div>
       </div>
       <div id="event-infos" class="hidden">
-      <%= render 'shared/event_infos'%>
+       <%= render 'shared/event_infos'%>
       </div>
     </div>
   </div>
+
 <!-- if all the events have already been swiped by the current_user : -->
 
 <% else %>
@@ -52,7 +53,8 @@
 <% end %>
 
 <% content_for(:js) do %>
-  <%= javascript_tag do %>
+
+  <script type="text/javascript">
     const navbar = document.getElementById('navbar-new');
     const photo = document.getElementById('photo');
     const subcat = document.getElementById('subcat');
@@ -66,9 +68,8 @@
       mainInfosNew.classList.toggle('hidden');
       btns.classList.toggle('btns-on-focus');
       eventInfos.classList.toggle('hidden');
-
-
+      google.maps.event.trigger(map, 'resize');
     });
 
-  <% end %>
+  </script>
 <% end %>
