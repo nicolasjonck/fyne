@@ -40,8 +40,15 @@ users_attributes = [
     photo: "",
   }
 ]
-User.create!(users_attributes)
-puts 'Finished with users!'
+
+
+# User.create!(users_attributes)
+  users_attributes.each do |user|
+    User.create!(user)
+    puts "#{user[:first_name]} has been created!"
+  end
+  puts 'Finished with users!'
+
 
 # Seeding the events
 
@@ -51,6 +58,7 @@ puts 'Cleaning event database'
 Event.destroy_all
 
 puts 'Creating events...'
+
 EventService.new(city: "Paris").call
 
 # events_attributes = [
@@ -139,6 +147,7 @@ EventService.new(city: "Paris").call
 #     user_id: User.where(email: "pierrealexis@gmail.com"),
 #   },
 # ]
+
 
 # Event.create!(events_attributes)
   # events_attributes.each do |event|

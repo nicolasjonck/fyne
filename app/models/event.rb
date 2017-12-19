@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
+  validates :user, presence: true
   has_many :swipe, dependent: :destroy
   validates :name, presence: true
   validates :category, presence: true

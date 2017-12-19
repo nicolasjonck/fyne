@@ -2,7 +2,7 @@
 <h1 class="text-center">Enter your event's details</h1>
 
 <div>
-  <%= render 'shared/form' %>
+  <%= render partial: 'shared/form', locals: { page_new: true } %>
 </div>
 
 <%= link_to "Back to my events", events_path, class: "btn btn-fyne btn-back-form btn-info" %>

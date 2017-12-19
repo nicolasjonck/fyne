@@ -16,7 +16,7 @@ class SwipesController < ApplicationController
     end
     # array_of_swiped_events contains the ids of the events already swiped
 
-    @events = Event.where.not(id: array_of_swiped_events)
+    @events = Event.where.not(id: array_of_swiped_events).where(city: current_user.city)
     # @events contains all the events that have not been swiped by the user
 
     @event = @events.sample
