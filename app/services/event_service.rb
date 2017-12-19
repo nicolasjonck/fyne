@@ -43,14 +43,14 @@ private
 def get_events
   set_events
   set_names_of_events
-    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=20&image_sizes=block100,large,dropshadow250&l=#{@city}").read)
+    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=80&image_sizes=block100,large,dropshadow250&l=#{@city}").read)
     api_events["events"]["event"].each do |event|
       new_event = Event.new
         new_event.name = event["title"]
         # new_event.category = "Other"
         # new_event.subcategory = "Other"
         if event["image"] == nil
-          new_event.photo = "https://picsum.photos/200/300/?random"
+          new_event.photo = "http://www.solidbackgrounds.com/images/1920x1080/1920x1080-yellow-solid-color-background.jpg"
         else
           new_event.photo = event["image"]["large"]["url"]
         end
