@@ -43,7 +43,7 @@ private
 def get_events
   set_events
   set_names_of_events
-    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=250&image_sizes=block100,large,dropshadow250&l=#{@city}").read)
+    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=20&image_sizes=block100,large,dropshadow250&l=#{@city}").read)
     api_events["events"]["event"].each do |event|
       new_event = Event.new
         new_event.name = event["title"]
