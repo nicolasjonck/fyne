@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
+
+gem 'social-share-button'
 gem 'omniauth-facebook'
 gem "coffee-rails"
 gem "gmaps4rails"
