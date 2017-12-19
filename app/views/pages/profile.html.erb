@@ -4,7 +4,7 @@
 <% end %>
 
 <div class="container">
-  <div class="row user-img-name">
+  <div class="user-img-name">
     <div class="user-img">
       <% if current_user.facebook_picture_url? %>
         <%= image_tag current_user.facebook_picture_url, class: "avatar-profile" %>
@@ -16,7 +16,7 @@
     </div>
     <h1 class="user-name"><%= @user.first_name %> <%= @user.last_name %></h1>
   </div>
-  <div class="row user-info">
+  <div class="user-info">
     <p>City: <%= @user.city %></p>
     <% if @swipes > 0 %>
       <p>Percentage of swipes liked: <%= @percentage_liked.round %>  %</p>
