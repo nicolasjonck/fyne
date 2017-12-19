@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20171218145233) do
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "photouploaded"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "photouploaded"
     t.string   "description"
     t.string   "eventful_id"
     t.string   "venue_name"
