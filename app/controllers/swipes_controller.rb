@@ -23,6 +23,10 @@ class SwipesController < ApplicationController
     # @event contains a random event selected in the @events array of "not swiped yet" events by the current_user
 
     @swipe = Swipe.new
+    @marker = Gmaps4rails.build_markers(@event) do |event, marker|
+      marker.lat event.latitude
+      marker.lng event.longitude
+    end
   end
 
   def create
