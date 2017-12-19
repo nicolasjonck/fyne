@@ -175,8 +175,8 @@ puts 'Creating events not swiped yet'
 
 events_not_swiped_attributes = [
   { name: "Lyon vs. Barcelona",
-    category: "Sports",
-    subcategory: "Football",
+    category: "sports",
+    subcategory: "sports_football",
     start_time: DateTime.new(2017,12,23,20,45,0),
     end_time: DateTime.new(2017,12,23,22,45,0),
     photo: "https://picsum.photos/200/300/?random",
@@ -188,8 +188,8 @@ events_not_swiped_attributes = [
     user_id: User.first.id,
   },
   { name: "Marseille vs. PSG",
-    category: "Sports",
-    subcategory: "Football",
+    category: "sports",
+    subcategory: "sports_football",
     start_time: DateTime.new(2018,2,25,20,45,0),
     end_time: DateTime.new(2018,2,25,22,45,0),
     photo: "https://picsum.photos/200/300/?random",
@@ -202,23 +202,23 @@ events_not_swiped_attributes = [
   },
 ]
 
-50.times do
-  events_not_swiped_attributes << {
-    name: "#{Faker::Name.name}'s concert",
-    category: "Music",
-    subcategory: "Alternative",
-    start_time: DateTime.new(2018,2,25,20,45,0),
-    end_time: DateTime.new(2018,2,25,22,45,0),
-    photo: "https://picsum.photos/200/300/?random",
-    street_address: Faker::Address.street_address,
-    city: Faker::Address.city,
-    zip_code: Faker::Address.zip_code,
-    state: Faker::Address.state,
-    country: Faker::Address.country,
-    user_id: User.first.id,
-  }
-  puts "#{events_not_swiped_attributes.last[:name]} added to the array"
-end
+# 50.times do
+#   events_not_swiped_attributes << {
+#     name: "#{Faker::Name.name}'s concert",
+#     category: "Music",
+#     subcategory: "Alternative",
+#     start_time: DateTime.new(2018,2,25,20,45,0),
+#     end_time: DateTime.new(2018,2,25,22,45,0),
+#     photo: "https://picsum.photos/200/300/?random",
+#     street_address: Faker::Address.street_address,
+#     city: Faker::Address.city,
+#     zip_code: Faker::Address.zip_code,
+#     state: Faker::Address.state,
+#     country: Faker::Address.country,
+#     user_id: User.first.id,
+#   }
+#   puts "#{events_not_swiped_attributes.last[:name]} added to the array"
+# end
 
 Event.create!(events_not_swiped_attributes)
 puts 'Finished with events not swiped'
