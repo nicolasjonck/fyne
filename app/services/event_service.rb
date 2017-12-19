@@ -43,7 +43,7 @@ private
 def get_events
   set_events
   set_names_of_events
-    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=80&image_sizes=block100,large,dropshadow250&l=#{@city}").read)
+    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=10&image_sizes=block100,large,dropshadow250&l=#{@city}").read)
     api_events["events"]["event"].each do |event|
       new_event = Event.new
         new_event.name = event["title"]
@@ -62,6 +62,7 @@ def get_events
         new_event.eventful_id = event["id"]
         new_event.description = event["description"]
         new_event.venue_name = event["venue_name"]
+        # new_event.url = event["url"]
         new_event.user_id = User.find_by_email("pierrealexis@gmail.com").id
 
       if @array_of_names.include?(new_event.name)
@@ -71,6 +72,9 @@ def get_events
         document  = Nokogiri::XML(file)
         new_event.category = document.css("categories id").first.text
         new_event.subcategory = new_event.category
+        if document.css("links url").first != nil
+          new_event.url = document.css("links url").first.text
+        end
         new_event.save
       end
     end

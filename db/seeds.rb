@@ -51,7 +51,7 @@ puts 'Cleaning event database'
 Event.destroy_all
 
 puts 'Creating events...'
-EventService.new(city: "Barcelona").call
+EventService.new(city: "Paris").call
 
 # events_attributes = [
 #   {
