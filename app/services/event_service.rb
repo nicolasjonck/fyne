@@ -60,8 +60,18 @@ def get_events
         new_event.city = event["city_name"]
         new_event.country = event["country_name"]
         new_event.eventful_id = event["id"]
-        new_event.description = event["description"]
-        new_event.venue_name = event["venue_name"]
+
+        if event["description"] != nil
+          new_event.description = Nokogiri::HTML.fragment(event["description"]).text
+          # fragment = Nokogiri::HTML.fragment(event["description"])
+        end
+
+        if event["venue_name"] != nil
+          # new_event.venue_name = event["venue_name"]
+          new_event.venue_name = Nokogiri::HTML.fragment(event["venue_name"]).text
+        end
+
+
         # new_event.url = event["url"]
         new_event.user_id = User.find_by_email("pierrealexis@gmail.com").id
 
