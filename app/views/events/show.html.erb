@@ -24,11 +24,13 @@
       <i class="fa fa-calendar-o" aria-hidden="true"></i>
       <p class="inline"> <%= @event.start_time.strftime('%A, %b %dth at %H:%M') %> </p>
 
-      <% if @event.start_time.strftime('%b %dth %Y') == @event.end_time.strftime('%b %dth %Y') %>
+      <% if @event.end_time != nil && @event.start_time.strftime('%b %dth %Y') == @event.end_time.strftime('%b %dth %Y') %>
         <h6 class="indication"> <%= @event.start_time.strftime('From %b %dth %Y at %H:%M') %> to <%= @event.end_time.strftime('%H:%M') %></h6>
       <% else %>
         <h6 class="indication"> From <%= @event.start_time.strftime('%b %dth %Y at %H:%M') %></h6>
-        <h6 class="indication"> To <%= @event.end_time.strftime('%b %dth %Y at %H:%M') %></h6>
+        <% if @event.end_time != nil %>
+          <h6 class="indication"> To <%= @event.end_time.strftime('%b %dth %Y at %H:%M') %></h6>
+        <% end %>
       <% end %>
     </div>
 
