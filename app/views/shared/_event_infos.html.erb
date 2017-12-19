@@ -1,6 +1,10 @@
 <div class="container">
   <div id="main-info">
-    <h2> <%= @event.name.upcase %> </h2>
+    <% if @event.venue_name != nil %>
+      <h2> <%= @event.name %> @ <%= @event.venue_name %></h2>
+    <% else %>
+      <h2> <%= @event.name %> </h2>
+    <% end %>
     <p class="category-tag <%= @event.category.downcase %>-tag"> <%= @event.subcategory.capitalize %> </p>
     <div class="share-fb">
       <%=link_to "https://www.facebook.com/sharer/sharer.php?u=https://fyne.herokuapp.com/" do %>
@@ -38,6 +42,21 @@
         <%= render 'shared/map' %>
       </div>
     </div>
+
+    <% if @event.description != nil %>
+      <div id="description" class="e-info">
+        <table>
+          <tr>
+            <td valign="top">
+              <i class="fa fa-info-circle" aria-hidden="true" style="padding-left: 3px; padding-right:6px"></i>
+            </td>
+            <td>
+              <p class="inline"> <%= @event.description %></p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
 
   <hr>
 
