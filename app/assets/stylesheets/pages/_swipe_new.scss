@@ -1,39 +1,30 @@
 .container-new {
   height: calc(100vh - 71px);
+  position: relative;
+}
+
+#navbar-new {
+  margin-bottom: 5px;
 }
 
 // CSS for the card
 
-.row-card {
-  height: 76vh;
-}
+// .row-card {
+//   height: 76vh;
+// }
 
 .card {
   height: calc(75vh - 3px);
+  width: 100%;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   background-position: center;
   color: white;
   position: relative;
-  top: 5px;
   border-radius: 4px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1)
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.card-user {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 40px;
-  border-radius: 50%;
-}
-.card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 15px;
-  text-transform: uppercase;
-}
 .card-description {
   position: absolute;
   bottom: 5px;
@@ -49,18 +40,26 @@
   font-weight: lighter;
   margin-top: 10px;
 }
-.card-link {
+
+.card-description-lowered {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  z-index: 2;
-  background: black;
-  opacity: 0;
-}
-.card-link:hover {
-  opacity: 0.1;
+  top: 410px;
+  z-index: 99;
+  color: $black;
+  text-shadow: none;
+  h2 {
+    color: $black;
+    font-size: 20px;
+    margin-top: 18px;
+    margin-bottom: 0px;
+    font-weight: bold;
+  }
+  p {
+    color: $black;
+    font-size: 12px;
+    margin-top: 0px;
+
+  }
 }
 
 // CSS for the control buttons
@@ -76,7 +75,7 @@
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border: 1x solid grey;
-  padding:10px;
+  padding: 10px;
   text-align: center;
   display: table-cell;
   vertical-align: middle;
@@ -101,7 +100,52 @@
   right: 70px;
 }
 
+
+.btns-on-focus {
+  width: 100%;
+  position: absolute;
+  top: 325px;
+  z-index: 99;
+  // position: absolute;
+  // top: -129px;
+  // z-index: 99;
+  // width: 80px;
+  // height: 80px;
+
+}
+
 .walter {
   text-align: center;
   vertical-align: middle;
+}
+
+
+// Not used for now
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  border-radius: 50%;
+}
+.card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover {
+  opacity: 0.1;
 }
