@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :check_signed_in, only: [:home]
   skip_before_action :authenticate_user!, only: [:home]
   before_action :set_swipes, only: [:profile]
 
@@ -11,6 +12,10 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def check_signed_in
+    redirect_to new_swipe_path if signed_in?
+  end
 
   def set_swipes
     @swipes_liked = Swipe.where(user: current_user).where(interested: true).count.to_f
