@@ -7,7 +7,7 @@
       <div id="event-info-box-aesthetic-background">
       </div>
       <div id="event-subcategory-box" >
-        <%= event.subcategory.capitalize %>
+        <%= event.subcategory.capitalize.gsub(/_/," ")  %>
       </div>
     </div>
   </div>

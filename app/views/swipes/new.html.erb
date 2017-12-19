@@ -10,7 +10,7 @@
           <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
             <div id="main-infos-new" class="card-description ">
               <h2><%= @event.name.upcase %></h2>
-              <p id="subcat"><%= @event.subcategory %></p>
+              <p id="subcat"><%= @event.subcategory.capitalize.gsub(/_/," ")  %></p>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div id="event-infos" class="hidden">
-      <%= render 'shared/event_infos' %>
+      <%= render 'shared/event_infos'%>
       </div>
     </div>
   </div>

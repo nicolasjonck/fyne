@@ -10,10 +10,15 @@
       <div class="col-xs-12 col-lg-6">
         <%#= f.input :category, prompt: 'Please choose your category', collection: ["Art & Culture", "Music", "Films & Series", "Sports", "Games", "Wellness & Health", "Spirituality", "Non-profit", "Tasting & Restauration", "Crafting", "Party", "Business", "Politics", "Other"] %>
         <%= f.input :category, prompt: 'Please choose your category', collection: ["music", "conference", "comedy", "learning_education", "family_fun_kids",  "festivals_parades",  "movies_film",  "food", "fundraisers",  "art",  "support",  "holiday",  "books",  "attractions",  "community",  "business", "singles_social", "schools_alumni", "clubs_associations", "outdoors_recreation",  "performing_arts",  "animals",  "politics_activism",  "sales",  "science",  "religion_spirituality",  "technology", "sports", "other"] %>
+        <% if page_new %>
         <%= f.input :subcategory, collection: ["Please select a category first"], prompt: 'Please choose your subcategory' %>
+        <% else %>
+          <%= f.input :subcategory, collection: @subcats_hash[@event.category], priority: @event.subcategory  %>
+        <% end %>
       </div>
     </div>
   </div>
+
 
   <!-- ["music", "conference", "comedy", "learning_education", "family_fun_kids",  "festivals_parades",  "movies_film",  "food", "fundraisers",  "art",  "support",  "holiday",  "books",  "attractions",  "community",  "business", "singles_social", "schools_alumni", "clubs_associations", "outdoors_recreation",  "performing_arts",  "animals",  "politics_activism",  "sales",  "science",  "religion_spirituality",  "technology", "sports", "other"] -->
 
@@ -56,6 +61,7 @@ console.log('Hello World from categories')
 
 const categoryField = document.getElementById('event_category')
 const subcategoryField = document.getElementById('event_subcategory')
+
 
 const subcats_hash = {};
 subcats_hash["music"] = ["music", "music_blues",  "music_classical",  "music_country",  "music_dance",  "music_easy_listening", "music_electronic", "music_folk", "music_jazz", "music_latin",  "music_newage", "music_opera",  "music_rb", "music_reggae", "music_vocal",  "music_rap_hiphop", "music_metal",  "music_religious",  "music_rock", "music_pop",  "music_world",  "music_alternative",  "music_childrens"];
@@ -254,21 +260,51 @@ subcats_hash["technology"] = ["technology",
 subcats_hash["other"] = ["other"];
  -->
 
+document.addEventListener("DOMContentLoaded", () => {
+  let cat_options = categoryField.querySelectorAll("option");
 
-categoryField.addEventListener("change",(event) => {
-  let categorySelected = categoryField.value;
+  cat_options.forEach((option) => {
+    option.innerText = option.innerText.charAt(0).toUpperCase() + option.innerText.slice(1).replace("_", " ").replace("_", " ");
+
+  })
+
+
+  let subcat_options = subcategoryField.querySelectorAll("option");
+
+  subcat_options.forEach((option) => {
+    option.innerText = option.innerText.charAt(0).toUpperCase() + option.innerText.slice(1).replace("_", " ").replace("_", " ");
+
+  })
+
+
+
+});
+
+function makeFieldsWork(event) {
+    let categorySelected = categoryField.value;
   let subcategories_matching = subcats_hash[categorySelected];
 
   let subcat_options = subcategoryField.querySelectorAll("option");
 
-  subcategoryField.innerHTML = ""
+
+
+  subcategoryField.innerHTML = "";
+
 
   subcategories_matching.forEach((subcategory) => {
-    subcategoryField.insertAdjacentHTML("beforeend", `<option value="${subcategory}">${subcategory}</option>`);
+    subcategoryField.insertAdjacentHTML("beforeend", `<option value="${subcategory}">${subcategory.charAt(0).toUpperCase() + subcategory.slice(1).replace("_", " ").replace("_", " ")}</option>`);
   });
+}
+
+
+
+
+
+categoryField.addEventListener("change",(event) => {
+
+makeFieldsWork(event)
 
 });
-
 
 
 

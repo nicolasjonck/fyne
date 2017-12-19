@@ -40,8 +40,15 @@ users_attributes = [
     photo: "",
   }
 ]
-User.create!(users_attributes)
-puts 'Finished with users!'
+
+
+# User.create!(users_attributes)
+  users_attributes.each do |user|
+    User.create!(user)
+    puts "#{user[:first_name]} has been created!"
+  end
+  puts 'Finished with users!'
+
 
 # Seeding the events
 
@@ -57,15 +64,15 @@ events_attributes = [
     name: "PSG vs. Real Madrid",
     category: "sports",
     subcategory: "sports_football",
-    start_time: DateTime.new(2017,12,18,20,45,0),
-    end_time: DateTime.new(2017,12,18,22,45,0),
+    start_time: DateTime.new(2017,12,20,20,45,0),
+    end_time: DateTime.new(2017,12,20,22,45,0),
     photo: "https://cde.peru.com/ima/0/1/7/4/6/1746319/611x458/real-madrid-vs-psg.jpg",
     street_address: "24 Rue du Commandant Guilbaud",
     city: Faker::Address.city,
     zip_code: "75016",
     state: "Paris",
     country: "France",
-    user_id: User.where(email: "pierrealexis@gmail.com"),
+    user_id: User.where(email: "pierrealexis@gmail.com").last.id,
   },
   {
     name: "DJ Snake",
@@ -79,7 +86,7 @@ events_attributes = [
     zip_code: "75012",
     state: "Paris",
     country: "France",
-    user_id: User.where(email: "nicolas@gmail.com"),
+    user_id: User.where(email: "nicolas@gmail.com").last.id,
   },
   {
     name: "Vianney @Ancienne Belgique",
@@ -93,21 +100,21 @@ events_attributes = [
     zip_code: "1000",
     state: "Brussels",
     country: "Belgium",
-    user_id: User.where(email: "madi@gmail.com"),
+    user_id: User.where(email: "madi@gmail.com").last.id,
   },
   {
     name: "Belgium - Georgia @King Baudouin Stadium",
     category: "sports",
     subcategory: "sports_rugby",
-    start_time: DateTime.new(2017,12,18,20,0,0),
-    end_time: DateTime.new(2017,12,18,22,0,0),
+    start_time: DateTime.new(2017,12,20,20,0,0),
+    end_time: DateTime.new(2017,12,20,22,0,0),
     photo: "https://upload.wikimedia.org/wikipedia/commons/1/18/Poland_vs_Belgium_2009_rugby_%282%29.jpg",
     street_address: "Avenue de Marathon 135",
     city: "Brussels",
     zip_code: "1020",
     state: "Brussels",
     country: "Belgium",
-    user_id: User.where(email: "madi@gmail.com"),
+    user_id: User.where(email: "madi@gmail.com").last.id,
   },
   {
     name: "El Molino On @El Molino Theatre",
@@ -121,7 +128,7 @@ events_attributes = [
     zip_code: "08004",
     state: "Barcelona",
     country: "Spain",
-    user_id: User.where(email: "pierrealexis@gmail.com"),
+    user_id: User.where(email: "pierrealexis@gmail.com").last.id,
   },
   {
     name: "Alimentaria",
@@ -135,7 +142,7 @@ events_attributes = [
     zip_code: "08028",
     state: "Barcelona",
     country: "Spain",
-    user_id: User.where(email: "pierrealexis@gmail.com"),
+    user_id: User.where(email: "pierrealexis@gmail.com").last.id,
   },
 ]
 

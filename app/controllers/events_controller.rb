@@ -28,6 +28,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     current_user.save
+
     if @event.save
       flash[:success] = "Congrats, your event #{@event.name} has been created!"
       redirect_to event_path(@event)
@@ -39,6 +40,8 @@ class EventsController < ApplicationController
   def edit
     @user = current_user
     @event = Event.find(params[:id])
+    compile_subcats
+    format_subcats
   end
 
   def update
@@ -71,6 +74,116 @@ class EventsController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def compile_subcats
+
+    # Subcat hash definition
+    @subcats_hash = {};
+    @subcats_hash["music"] = ["music", "music_blues",  "music_classical",  "music_country",  "music_dance",  "music_easy_listening", "music_electronic", "music_folk", "music_jazz", "music_latin",  "music_newage", "music_opera",  "music_rb", "music_reggae", "music_vocal",  "music_rap_hiphop", "music_metal",  "music_religious",  "music_rock", "music_pop",  "music_world",  "music_alternative",  "music_childrens"];
+    @subcats_hash["conference"] = ["conference", "conference_career", "conference_convention", "conference_seminar", "conference_talkslectures"];
+    @subcats_hash["comedy"] = ["comedy"];
+    @subcats_hash["learning_education"] = ["learning_education", "learning_education_classworkshop"];
+    @subcats_hash["family_fun_kids"] = ["family_fun_kids"];
+    @subcats_hash["festivals_parades"] = ["festivals_parades", "festivals_parades_circus", "festivals_parades_festival", "festivals_parades_fairs", "festivals_parades_parade"];
+    @subcats_hash["movies_film"] = ["movies_film", "movies_film_filmfestival"];
+    @subcats_hash["food"] = ["food", "food_beer", "food_wine", "food_farmersmarket", "food_tastings"];
+    @subcats_hash["fundraisers"] = ["fundraisers", "fundraisers_blooddrive", "fundraisers_volunteer"];
+    @subcats_hash["art"] = ["art",
+    "art_antiques",
+    "art_painting",
+    "art_photography",
+    "art_artexhibits",
+    "art_artsandcrafts",
+    "art_fashion"];
+    @subcats_hash["support"] = ["support",
+    "support_fitness",
+    "support_seniorhealth",
+    "support_support",
+    "support_yoga"];
+    @subcats_hash["holiday"] = ["holiday"];
+    @subcats_hash["books"] = ["books",
+    "books_poetry"];
+    @subcats_hash["attractions"] = ["attractions"];
+    @subcats_hash["community"] = ["community",
+    "community_library",
+    "community_holiday",
+    "community_seasonal"];
+    @subcats_hash["business"] = ["business"];
+    @subcats_hash["singles_social"] = ["singles_social",
+    "singles_social_trivianight",
+    "singles_social_comedy",
+    "singles_social_bars",
+    "singles_social_dating",
+    "singles_social_karaoke",
+    "singles_social_openmic"];
+    @subcats_hash["schools_alumni"] = ["schools_alumni"];
+    @subcats_hash["clubs_associations"] = ["clubs_associations"];
+    @subcats_hash["outdoors_recreation"] = ["outdoors_recreation",
+    "outdoors_recreation_cycling",
+    "outdoors_recreation_hiking",
+    "outdoors_recreation_nature",
+    "outdoors_recreation_running"];
+    @subcats_hash["performing_arts"] = ["performing_arts",
+    "performing_arts_cabaret",
+    "performing_arts_opera",
+    "performing_arts_dance",
+    "performing_arts_musical",
+    "performing_arts_ballet",
+    "performing_arts_comedy",
+    "performing_arts_theatre"];
+    @subcats_hash["animals"] = ["animals",
+    "animals_cats",
+    "animals_dogs"];
+    @subcats_hash["politics_activism"] = ["politics_activism"];
+    @subcats_hash["sales"] = ["sales",
+    "sales_auction",
+    "sales_craftshow",
+    "sales_fleamarket",
+    "sales_yardsale",
+    "sales_retail"];
+    @subcats_hash["science"] = ["science"];
+    @subcats_hash["religion_spirituality"] = ["religion_spirituality"];
+    @subcats_hash["sports"] = ["sports",
+    "sports_autoracing",
+    "sports_dance",
+    "sports_gymnastics",
+    "sports_iceskatingskiing",
+    "sports_softball",
+    "sports_swimmingdiving",
+    "sports_volleyball",
+    "sports_baseball",
+    "sports_basketball",
+    "sports_cricket",
+    "sports_football",
+    "sports_golf",
+    "sports_hockey",
+    "sports_rugby",
+    "sports_soccer",
+    "sports_tennis",
+    "sports_wrestling"];
+    @subcats_hash["technology"] = ["technology",
+    "technology_computer"];
+    @subcats_hash["other"] = ["other"];
+
+    @subcats_hash["Films & Series"] = ["Action", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Romance", "Sport", "War", "Western"];
+    @subcats_hash["Sports"] = ["Football", "Rugby", "Tennis", "Formula 1", "Auto/moto", "Basket", "Handball", "Golf", "Cycle", "Winter sports", "Athletism", "Swimming", "Volley-ball", "Other sports"];
+    @subcats_hash["Games"] = ["Games"];
+    @subcats_hash["Wellness & Health"] = ["Dancing", "Fitness", "Health"];
+    @subcats_hash["Spirituality"] = ["Spirituality"];
+    @subcats_hash["Non-profit"] = ["Non-profit"];
+    @subcats_hash["Tasting & Restauration"] = ["Food tasting", "Drink tasting"];
+    @subcats_hash["Crafting"] = ["Crafting (General)", "Gardening", "Home"];
+    @subcats_hash["Party"] = ["Party"];
+    @subcats_hash["Business"] = ["Networking", "Shopping", "Conference"];
+    @subcats_hash["Politics"] = ["Politics"];
+    @subcats_hash["Other"] = ["Other"];
+
+  end
+
+  def format_subcats
+    raw_subcat = @subcats_hash[@event.category] - [@event.subcategory]
+    @formatted_subcats = raw_subcat.unshift(@event.subcategory)
   end
 
 end
