@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     # event = EventService.new.call
     #afterwards, need to do booking
 
-    #add when latitude and long added to event model:
+    # add when latitude and long added to event model:
     # @event = Event.where.not(latitude: nil, longitude: nil)
     @marker = Gmaps4rails.build_markers(@event) do |event, marker|
       marker.lat event.latitude

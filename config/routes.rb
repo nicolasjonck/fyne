@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   # get 'swipes/new', to: 'swipes#new'
   # get 'swipes', to: 'swipes#create'
-
-  devise_for :users
+  devise_for :users,
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :events
 
