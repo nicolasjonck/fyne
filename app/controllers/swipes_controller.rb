@@ -1,6 +1,9 @@
 class SwipesController < ApplicationController
   def index
     @swipes_liked = Swipe.where(user: current_user).where(interested: true)
+   # Each swipe.event - retreive the date
+   @events_liked = @swipes_liked.map { |swipe| swipe.event }
+   @array_of_dates = @events_liked.map { |event| event.start_time }.sort.map{|date| date.strftime('%A %dth, %b %Y') }.uniq
   end
 
   def new
@@ -24,6 +27,8 @@ class SwipesController < ApplicationController
 
   def create
     @swipe = Swipe.new(swipe_params)
+    @swipe.user = current_user
+    # Add it to the user array <<
     if @swipe.save
       redirect_to new_swipe_path
     else

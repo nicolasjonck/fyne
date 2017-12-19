@@ -32,7 +32,7 @@
   <div class="container-fyne">
     <div class="cards-container-index">
       <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
-        <% if date >= Date.today.strftime('%A %dth, %b %Y') %>
+        <% if date.to_date >= Date.today %>
           <h2>
             <%= date %>
           </h2>
@@ -93,7 +93,7 @@
           </h2>
         <% end %>
         <% events.each do |event| %>
-          <% if (event.start_time.to_date == ( DateTime.now.end_of_week || DateTime.now.end_of_week.yesterday )) %>
+          <% if (event.start_time.strftime('%A %dth, %b %Y') == ( DateTime.now.end_of_week.strftime('%A %dth, %b %Y') || DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y') )) %>
             <%= render 'shared/cards', event: event%>
           <% end %>
         <% end %>
