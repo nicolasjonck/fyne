@@ -12,14 +12,12 @@
  <% end %>
 </div>
 
-<<<<<<< HEAD
-
 <%= render 'shared/event_infos' %>
-=======
+
 <div class="container">
   <div id="main-info">
     <h2> <%= @event.name.upcase %> </h2>
-    <p class="category-tag-sports"> <%= @event.subcategory.capitalize %> </p>
+    <p class="category-tag <%= @event.category.downcase%>"> <%= @event.subcategory.capitalize %> </p>
   </div>
   <div id="secondary-infos">
     <div id="date" class="e-info">
