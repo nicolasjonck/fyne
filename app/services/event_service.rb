@@ -50,7 +50,7 @@ def get_events
         # new_event.category = "Other"
         # new_event.subcategory = "Other"
         if event["image"] == nil
-          new_event.photo = "http://www.solidbackgrounds.com/images/1920x1080/1920x1080-yellow-solid-color-background.jpg"
+          new_event.photo = "http://blog.daix.com/wp-content/uploads/2012/09/fond-d-ecran-noir-iphone-5"
         else
           new_event.photo = event["image"]["large"]["url"]
         end
