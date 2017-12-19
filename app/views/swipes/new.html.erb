@@ -1,33 +1,39 @@
-<%= render 'shared/navbar', profile_color: "inactive", calendar_color: "inactive", fyne_color: "active" %>
+<div id= "navbar-new" class="new-no-padding">
+  <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "inactive", fyne_color: "active" %>
+</div>
 
 <% if @event != nil %>
-  <div class="container-new">
-    <div class="row row-card">
-      <div class="col-xs-12">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
-          <div class="card-description">
-            <h2><%= @event.name %></h2>
-            <p><%= @event.subcategory %></p>
+  <div id="container-new-swipe">
+    <div id= "container-new" class="container-new">
+      <div class="row-card">
+        <div class="">
+          <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
+            <div id="main-infos-new" class="card-description ">
+              <h2><%= @event.name.upcase %></h2>
+              <p id="subcat"><%= @event.subcategory %></p>
+            </div>
           </div>
-          <a class="card-link" href="#" ></a>
         </div>
       </div>
-    </div>
-    <div class="row row-controls">
-      <div class="col-xs-12">
-        <div class="controls">
-          <div class="control-btn btn-dislike">
-            <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: false}), method: :post do %>
-              <i class="fa fa-times fa-3x button dislike" aria-hidden="true"></i>
-            <% end %>
-          </div>
-          <div class="control-btn btn-like">
-            <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: true}), method: :post do %>
-                <i class="fa fa-heart fa-3x button like" aria-hidden="true"></i>
-              <%#= image_tag "like.png", {class: "img-circle button"}%>
-            <% end %>
+      <div class="row-controls">
+        <div class="">
+          <div id="command-btn-group" class="controls">
+            <div class="control-btn btn-dislike">
+              <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: false}), method: :post do %>
+                <i class="fa fa-times fa-3x button dislike" aria-hidden="true"></i>
+              <% end %>
+            </div>
+            <div class="control-btn btn-like">
+              <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: true}), method: :post do %>
+                  <i class="fa fa-heart fa-3x button like" aria-hidden="true"></i>
+                <%#= image_tag "like.png", {class: "img-circle button"}%>
+              <% end %>
+            </div>
           </div>
         </div>
+      </div>
+      <div id="event-infos" class="hidden">
+      <%= render 'shared/event_infos' %>
       </div>
     </div>
   </div>
@@ -45,4 +51,24 @@
   </div>
 <% end %>
 
+<% content_for(:js) do %>
+  <%= javascript_tag do %>
+    const navbar = document.getElementById('navbar-new');
+    const photo = document.getElementById('photo');
+    const subcat = document.getElementById('subcat');
+    const mainInfosNew = document.getElementById('main-infos-new');
+    const btns = document.getElementById('command-btn-group');
+    const eventInfos = document.getElementById('event-infos');
 
+    photo.addEventListener("click", (event) => {
+      navbar.classList.toggle('hidden');
+      photo.classList.toggle('event-photo-container');
+      mainInfosNew.classList.toggle('hidden');
+      btns.classList.toggle('btns-on-focus');
+      eventInfos.classList.toggle('hidden');
+
+
+    });
+
+  <% end %>
+<% end %>
