@@ -27,6 +27,42 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+
+    if @event.photo == nil
+      hash_of_images = {
+            music: 'https://picsum.photos/200/300?image=452',
+            conference: 'https://picsum.photos/200/300?image=677',
+            comedy: 'https://picsum.photos/200/300?image=395',
+            learning_education: 'https://picsum.photos/200/300?image=885',
+            family_fun_kids: 'https://picsum.photos/200/300?image=838',
+            festivals_parades: 'https://picsum.photos/200/300?image=145',
+            movies_film: 'https://picsum.photos/200/300?image=91',
+            food: 'https://picsum.photos/200/300?image=999',
+            fundraisers: 'https://picsum.photos/200/300?image=513',
+            art: 'https://picsum.photos/200/300?image=628',
+            support: 'https://picsum.photos/200/300?image=773',
+            holiday: 'https://picsum.photos/200/300?image=845',
+            books: 'https://picsum.photos/200/300?image=1010',
+            attractions: 'https://picsum.photos/200/300?image=252',
+            community: 'https://picsum.photos/200/300?image=998',
+            business: 'https://picsum.photos/200/300?image=1031',
+            singles_social: 'https://picsum.photos/200/300?image=815',
+            schools_alumni: 'https://picsum.photos/200/300?image=532',
+            clubs_associations: 'https://picsum.photos/200/300?image=526',
+            outdoors_recreation: 'https://picsum.photos/200/300?image=1057',
+            performing_arts: 'https://picsum.photos/200/300?image=453',
+            animals: 'https://picsum.photos/200/300?image=1025',
+            politics_activism: 'https://picsum.photos/200/300?image=441',
+            sales: 'https://picsum.photos/200/300?image=686',
+            science: 'https://picsum.photos/200/300?image=967',
+            religion_spirituality: 'https://picsum.photos/200/300?image=938',
+            sports: 'https://picsum.photos/200/300?image=1058',
+            technology: 'https://picsum.photos/200/300?image=949',
+            other: 'https://picsum.photos/200/300?image=467',
+          }
+      @event.photo = hash_of_images[@event.category.to_sym]
+    end
+
     current_user.save
 
     if @event.save
