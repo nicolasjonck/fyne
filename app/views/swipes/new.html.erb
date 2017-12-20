@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div id="event-infos" class="hidden">
+      <div id="event-infos" class="custom-hide">
        <%= render partial:'shared/event_infos', locals: { page_show: false } %>
       </div>
     </div>
@@ -59,15 +59,20 @@
     const mainInfosNew = document.getElementById('main-infos-new');
     const btns = document.getElementById('command-btn-group');
     const eventInfos = document.getElementById('event-infos');
+    const center = document.getElementById('map');
 
     photo.addEventListener("click", (event) => {
       navbar.classList.toggle('hidden');
       photo.classList.toggle('event-photo-container');
       mainInfosNew.classList.toggle('hidden');
       btns.classList.toggle('btns-on-focus');
-      eventInfos.classList.toggle('hidden');
+      eventInfos.classList.toggle('custom-hide');
       google.maps.event.trigger(map, 'resize');
+
+
+
     });
+
 
   </script>
 <% end %>
