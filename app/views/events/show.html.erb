@@ -1,5 +1,6 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
+<%= render 'shared/flashes' %>
 
 <div class="event-photo-container overflow-hidden">
 
@@ -12,15 +13,12 @@
  <% end %>
 </div>
 
+
+
 <div>
-  <%= render 'shared/event_infos' %>
+  <%= render partial:'shared/event_infos', locals: { page_show: true } %>
 </div>
 
-<% if @event.url != nil %>
-  <div class="text-center">
-    <%= link_to "Book", "#{@event.url}", class: "btn btn-success btn-event-show btn-fyne", target: :_blank %>
-  </div>
-<% end %>
 
 <% if @event.user == current_user %>
   <div class="text-center">

@@ -84,10 +84,12 @@
 
 .like {
   color: $yellow;
+  text-decoration: none;
 }
 
 .dislike {
   color: $red;
+  text-decoration: none;
 }
 
 .btn-dislike {
@@ -119,6 +121,10 @@
   vertical-align: middle;
 }
 
+#walter-message {
+  padding: 20px;
+  margin: 0px auto;
+}
 
 // Not used for now
 .card-user {

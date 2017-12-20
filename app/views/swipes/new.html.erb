@@ -2,6 +2,8 @@
   <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "inactive", fyne_color: "active" %>
 </div>
 
+<%= render 'shared/flashes' %>
+
 <% if @event != nil %>
   <div id="container-new-swipe">
     <div id= "container-new" class="container-new">
@@ -33,7 +35,7 @@
         </div>
       </div>
       <div id="event-infos" class="hidden">
-       <%= render 'shared/event_infos'%>
+       <%= render partial:'shared/event_infos', locals: { page_show: false } %>
       </div>
     </div>
   </div>
@@ -42,13 +44,11 @@
 
 <% else %>
   <div class="container-new">
-    <div class="row">
-      <div class="walter text-center">
-        <h1>Introducing Walter</h1>
-        <p>The #1 event finder in the world</p>
-        <%= render 'shared/walter' %>
-       </div>
-    </div>
+    <div class="walter text-center">
+      <h1>Introducing Walter</h1>
+      <p>The #1 event finder in the world</p>
+      <%= render 'shared/walter' %>
+     </div>
   </div>
 <% end %>
 

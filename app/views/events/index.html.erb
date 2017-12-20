@@ -12,96 +12,103 @@
 
 <hr id="large-line">
 
-<div class="tabs tabs-fyne">
-  <a href="#" class="tab active" data-target="all">
-    All
-  </a>
-  <a href="#" class="tab" data-target="today">
-    Today
-  </a>
-  <a href="#" class="tab" data-target="tomorrow">
-    Tomorrow
-  </a>
-  <a href="#" class="tab" data-target="this_weekend">
-    This weekend
-  </a>
-</div>
+<% if current_user.events.count != 0 %>
+  <div class="tabs tabs-fyne">
+    <a href="#" class="tab active" data-target="all">
+      All
+    </a>
+    <a href="#" class="tab" data-target="today">
+      Today
+    </a>
+    <a href="#" class="tab" data-target="tomorrow">
+      Tomorrow
+    </a>
+    <a href="#" class="tab" data-target="this_weekend">
+      This weekend
+    </a>
+  </div>
 
 
-<div class="tab-content" id="all">
-  <div class="container-fyne">
-    <div class="cards-container-index">
-      <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
-        <% if date.to_date >= Date.today %>
-          <h2>
-            <%= date %>
-          </h2>
+  <div class="tab-content" id="all">
+    <div class="container-fyne">
+      <div class="cards-container-index">
+        <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
+          <% if date.to_date >= Date.today %>
+            <h2>
+              <%= date %>
+            </h2>
+            <% events.each do |event| %>
+              <%= render 'shared/cards', event: event%>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="today">
+    <div class="container-fyne">
+      <div class="cards-container-index">
+        <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
+          <% if date == DateTime.now.strftime('%A %dth, %b %Y') %>
+            <h2>
+              <%= date %>
+            </h2>
+          <% end %>
           <% events.each do |event| %>
-            <%= render 'shared/cards', event: event%>
+            <% if (event.start_time.to_date == Date.today) %>
+              <%= render 'shared/cards', event: event%>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="tab-content hidden" id="today">
+  <div class="tab-content hidden" id="tomorrow">
+    <div class="container-fyne">
+      <div class="cards-container-index">
+        <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
+          <% if date == DateTime.tomorrow.strftime('%A %dth, %b %Y') %>
+            <h2>
+              <%= date %>
+            </h2>
+          <% end %>
+          <% events.each do |event| %>
+            <% if (event.start_time.to_date == Date.tomorrow) %>
+              <%= render 'shared/cards', event: event%>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="this_weekend">
+    <div class="container-fyne">
+      <div class="cards-container-index">
+        <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
+          <% if (date == ( DateTime.now.end_of_week.strftime('%A %dth, %b %Y') || DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y')))  %>
+            <h2>
+              <%= date %>
+            </h2>
+          <% end %>
+          <% events.each do |event| %>
+            <% if (event.start_time.strftime('%A %dth, %b %Y') == ( DateTime.now.end_of_week.strftime('%A %dth, %b %Y') || DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y') )) %>
+              <%= render 'shared/cards', event: event%>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
   <div class="container-fyne">
-    <div class="cards-container-index">
-      <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
-        <% if date == DateTime.now.strftime('%A %dth, %b %Y') %>
-          <h2>
-            <%= date %>
-          </h2>
-        <% end %>
-        <% events.each do |event| %>
-          <% if (event.start_time.to_date == Date.today) %>
-            <%= render 'shared/cards', event: event%>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
+    <h2 class="text-center"> You didn't create any events yet... Click on 'Create an event' to post new experiences!</h2>
   </div>
-</div>
-
-<div class="tab-content hidden" id="tomorrow">
-  <div class="container-fyne">
-    <div class="cards-container-index">
-      <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
-        <% if date == DateTime.tomorrow.strftime('%A %dth, %b %Y') %>
-          <h2>
-            <%= date %>
-          </h2>
-        <% end %>
-        <% events.each do |event| %>
-          <% if (event.start_time.to_date == Date.tomorrow) %>
-            <%= render 'shared/cards', event: event%>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div class="tab-content hidden" id="this_weekend">
-  <div class="container-fyne">
-    <div class="cards-container-index">
-      <% @group_of_events.where(user: current_user).order(start_time: :asc).group_by { |e| e.start_time.strftime('%A %dth, %b %Y') }.each do |date, events| %>
-        <% if (date == ( DateTime.now.end_of_week.strftime('%A %dth, %b %Y') || DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y')))  %>
-          <h2>
-            <%= date %>
-          </h2>
-        <% end %>
-        <% events.each do |event| %>
-          <% if (event.start_time.strftime('%A %dth, %b %Y') == ( DateTime.now.end_of_week.strftime('%A %dth, %b %Y') || DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y') )) %>
-            <%= render 'shared/cards', event: event%>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
+<% end %>
 <% content_for(:js) do %>
   <%= javascript_tag do %>
 const tabs = document.querySelectorAll('.tab')
