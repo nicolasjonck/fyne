@@ -18,7 +18,7 @@ class SwipesController < ApplicationController
 
     @events = Event.where.not(id: array_of_swiped_events).where(city: current_user.city)
     if @events == []
-      EventService.new(city: current_user.city, size: 50).call
+      EventService.new(city: current_user.city, size: 20).call
       @events = Event.where.not(id: array_of_swiped_events).where(city: current_user.city)
     end
     # @events contains all the events that have not been swiped by the user
