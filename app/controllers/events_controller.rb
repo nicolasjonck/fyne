@@ -93,7 +93,6 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    flash[:notice] = "Your event has been successfully deleted"
     redirect_to new_swipe_path
   end
 
