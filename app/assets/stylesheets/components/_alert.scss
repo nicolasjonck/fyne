@@ -9,7 +9,16 @@
 }
 .alert-info {
   background: $green;
+  border-radius: 0px;
+  color: white;
 }
 .alert-warning {
   background: $red;
+  border-radius: 0px;
+  color: white;
+}
+
+.close-fyne {
+  color: white;
+  opacity: 0.8;
 }
