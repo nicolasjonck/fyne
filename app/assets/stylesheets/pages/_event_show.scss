@@ -9,6 +9,7 @@
   overflow: hidden;
 }
 
+
 .event-photo {
   width: 100vw;
   // margin: -60px 0px;
@@ -28,8 +29,14 @@
   margin: 0px;
 }
 
+
 .inline {
   display: inline;
+}
+
+.event-description {
+  padding-right: 24px;
+  text-align: justify;
 }
 
 .indication {
@@ -40,19 +47,24 @@
   margin-bottom: 3vh;
 }
 
-#main-info {
+.main-info-container {
   position: relative;
-  margin-bottom: 4vh;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.share-fb {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 5vh;
-  margin-right: 1vh;
+.main-info-btns {
+  display: flex;
+  flex-direction: column;
+  width: 35px;
+  margin-top: 18px;
+}
+
+.main-info {
+  width: 275px;
 }
 
 .event-name {
-  padding-right: 5vh;
+  padding-right: 0px;
 }

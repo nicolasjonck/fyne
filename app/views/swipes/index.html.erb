@@ -19,113 +19,117 @@
 <h1 class="text-center">Events you liked</h1>
 <br>
 
-<div class="tabs tabs-fyne">
-  <a href="#" class="tab active" data-target="all">
-    All
-  </a>
-  <a href="#" class="tab" data-target="today">
-    Today
-  </a>
-  <a href="#" class="tab" data-target="tomorrow">
-    Tomorrow
-  </a>
-  <a href="#" class="tab" data-target="this_weekend">
-    This weekend
-  </a>
-</div>
+<% if @events_liked.count != 0 %>
+
+  <div class="tabs tabs-fyne">
+    <a href="#" class="tab active" data-target="all">
+      All
+    </a>
+    <a href="#" class="tab" data-target="today">
+      Today
+    </a>
+    <a href="#" class="tab" data-target="tomorrow">
+      Tomorrow
+    </a>
+    <a href="#" class="tab" data-target="this_weekend">
+      This weekend
+    </a>
+  </div>
 
 
-<div class="tab-content" id="all">
-  <div class="container-fyne">
-    <div class="cards-container-index">
+  <div class="tab-content" id="all">
+    <div class="container-fyne">
+      <div class="cards-container-index">
 
-      <% @array_of_dates.each do |date| %>
+        <% @array_of_dates.each do |date| %>
 
-        <% if date.to_date >= Date.today %>
-          <h2><%= date %></h2>
-          <% @events_liked.each do |event| %>
-            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+          <% if date.to_date >= Date.today %>
+            <h2><%= date %></h2>
+            <% @events_liked.each do |event| %>
+              <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
 
-              <%= render 'shared/cards', event: event %>
+                <%= render 'shared/cards', event: event %>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
 
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div class="tab-content hidden" id="today">
-  <div class="container-fyne">
-    <div class="cards-container-index">
+  <div class="tab-content hidden" id="today">
+    <div class="container-fyne">
+      <div class="cards-container-index">
 
-      <% @array_of_dates.each do |date| %>
-        <% if date.to_date == Date.today %>
-          <h2><%= date %></h2>
-          <% @events_liked.each do |event| %>
-            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
-              <%= render 'shared/cards', event: event %>
+        <% @array_of_dates.each do |date| %>
+          <% if date.to_date == Date.today %>
+            <h2><%= date %></h2>
+            <% @events_liked.each do |event| %>
+              <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+                <%= render 'shared/cards', event: event %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
 
+      </div>
     </div>
   </div>
-</div>
 
-<div class="tab-content hidden" id="tomorrow">
-  <div class="container-fyne">
-    <div class="cards-container-index">
+  <div class="tab-content hidden" id="tomorrow">
+    <div class="container-fyne">
+      <div class="cards-container-index">
 
-      <% @array_of_dates.each do |date| %>
-        <% if date.to_date == Date.tomorrow %>
-          <h2><%= date %></h2>
-          <% @events_liked.each do |event| %>
-            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
-              <%= render 'shared/cards', event: event %>
+        <% @array_of_dates.each do |date| %>
+          <% if date.to_date == Date.tomorrow %>
+            <h2><%= date %></h2>
+            <% @events_liked.each do |event| %>
+              <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+                <%= render 'shared/cards', event: event %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
 
+      </div>
     </div>
   </div>
-</div>
 
-<div class="tab-content hidden" id="this_weekend">
-  <div class="container-fyne">
-    <div class="cards-container-index">
+  <div class="tab-content hidden" id="this_weekend">
+    <div class="container-fyne">
+      <div class="cards-container-index">
 
-      <% @array_of_dates.each do |date| %>
-        <% if date == DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y') %>
-          <h2><%= date %></h2>
-          <% @events_liked.each do |event| %>
-            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
-              <%= render 'shared/cards', event: event %>
+        <% @array_of_dates.each do |date| %>
+          <% if date == DateTime.now.end_of_week.yesterday.strftime('%A %dth, %b %Y') %>
+            <h2><%= date %></h2>
+            <% @events_liked.each do |event| %>
+              <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+                <%= render 'shared/cards', event: event %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
 
-      <% @array_of_dates.each do |date| %>
-        <% if date == DateTime.now.end_of_week.strftime('%A %dth, %b %Y') %>
-          <h2><%= date %></h2>
-          <% @events_liked.each do |event| %>
-            <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
-              <%= render 'shared/cards', event: event %>
+        <% @array_of_dates.each do |date| %>
+          <% if date == DateTime.now.end_of_week.strftime('%A %dth, %b %Y') %>
+            <h2><%= date %></h2>
+            <% @events_liked.each do |event| %>
+              <% if event.start_time.strftime('%A %dth, %b %Y') == date %>
+                <%= render 'shared/cards', event: event %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
 
+      </div>
     </div>
   </div>
-</div>
 
-
+<% else %>
+  <h2 class="text-center"> You didn't like any events yet... Time to discover new experiences!</h2>
+<% end %>
 
 <% content_for(:js) do %>
   <%= javascript_tag do %>

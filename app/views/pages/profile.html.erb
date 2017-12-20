@@ -42,8 +42,14 @@
 
 
   </div>
+
   <div class="row buttons btn-group-fyne btn-top-move">
     <%= link_to "Update", edit_user_registration_path, class: "btn btn-fyne btn-primary" %>
     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-fyne btn-danger" %>
+
+    <% if @user.admin %>
+      <%= link_to "Admin page", rails_admin_path, class: "btn btn-fyne btn-primary" %>
+    <% end %>
+
   </div>
 </div>

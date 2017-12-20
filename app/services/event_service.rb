@@ -116,6 +116,7 @@ def get_events
           science: 'https://picsum.photos/200/300?image=967',
           religion_spirituality: 'https://picsum.photos/200/300?image=938',
           sports: 'https://picsum.photos/200/300?image=1058',
+          technology: 'https://picsum.photos/200/300?image=949',
           other: 'https://picsum.photos/200/300?image=467',
         }
           new_event.photo = hash_of_images[new_event.category.to_sym]

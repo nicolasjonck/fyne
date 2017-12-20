@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # get 'swipes/index', to: 'swipes#index'
 
   # get 'swipes/new', to: 'swipes#new'

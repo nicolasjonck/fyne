@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '2.3.5'
 
 
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
 gem 'omniauth-facebook'
 gem "coffee-rails"
 gem "gmaps4rails"
