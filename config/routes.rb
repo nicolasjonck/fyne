@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   # get 'swipes/index', to: 'swipes#index'
 
   # get 'swipes/new', to: 'swipes#new'

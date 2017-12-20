@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
-
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'omniauth-facebook'
 gem "coffee-rails"
 gem "gmaps4rails"
