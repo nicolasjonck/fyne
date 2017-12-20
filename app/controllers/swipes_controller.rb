@@ -17,10 +17,18 @@ class SwipesController < ApplicationController
     # array_of_swiped_events contains the ids of the events already swiped
 
     @events = Event.where.not(id: array_of_swiped_events).where(city: current_user.city)
+    if @events == []
+      EventService.new(city: current_user.city, size: 50).call
+      @events = Event.where.not(id: array_of_swiped_events).where(city: current_user.city)
+    end
     # @events contains all the events that have not been swiped by the user
 
     @event = @events.sample
     # @event contains a random event selected in the @events array of "not swiped yet" events by the current_user
+
+    # if @event == nil
+    #   EventService.new(city: current_user.city).call
+    # end
 
     @swipe = Swipe.new
     @marker = Gmaps4rails.build_markers(@event) do |event, marker|
