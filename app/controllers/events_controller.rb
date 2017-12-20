@@ -66,7 +66,7 @@ class EventsController < ApplicationController
     current_user.save
 
     if @event.save
-      flash[:success] = "Congrats, your event #{@event.name} has been created!"
+      flash[:notice] = "Congrats, your event #{@event.name} has been created!"
       redirect_to event_path(@event)
     else
       render :new
@@ -84,7 +84,7 @@ class EventsController < ApplicationController
     @event.update(event_params)
     @event.save
     if @event.save
-      flash[:success] = "Your event #{@event.name} has been successfully updated"
+      flash[:notice] = "Your event #{@event.name} has been successfully updated"
       redirect_to event_path(@event)
     else
       render :edit
@@ -93,7 +93,6 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    flash[:success] = "Your event has been successfully deleted"
     redirect_to new_swipe_path
   end
 
@@ -101,7 +100,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :user, :category, :subcategory, :start_time, :end_time, :street_address, :city, :zip_code, :state, :country, :photo, :photouploaded)
+    params.require(:event).permit(:name, :user, :category, :subcategory, :start_time, :end_time, :street_address, :city, :zip_code, :state, :country, :photo, :photouploaded, :url, :description)
   end
 
   def set_event

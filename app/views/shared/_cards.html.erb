@@ -40,7 +40,7 @@
       <%=link_to "https://www.facebook.com/sharer/sharer.php?u=https://fyne.herokuapp.com/" do %>
         <i class="fa fa-share share-fb-index" aria-hidden="true"></i>
       <% end %>
-       <% if (event.url != nil) %>
+       <% if (event.url != nil) & (event.url != "") %>
         <div>
           <%=link_to "#{event.url}", target: :_blank do %>
             <i class="fa fa-bolt book-btn-index" aria-hidden="true"></i>

@@ -13,7 +13,7 @@
     </div>
 
     <div class="main-info-btns">
-      <% if (@event.url != nil) & page_show %>
+      <% if (@event.url != nil) & (@event.url != "") & page_show %>
          <%=link_to "#{@event.url}", target: :_blank do %>
           <i class="fa fa-bolt btn-book" aria-hidden="true"></i>
         <% end %>
@@ -58,7 +58,7 @@
 
   <hr>
 
-    <% if @event.description != nil %>
+    <% if (@event.description != nil) & (@event.description != "")%>
       <div id="description" class="e-info">
         <table>
           <tr>
@@ -71,9 +71,9 @@
           </tr>
         </table>
       </div>
+      <hr>
     <% end %>
 
-  <hr>
 
   <% unless @event.user == current_user %>
     <div id="organizer" class="e-info">

@@ -19,6 +19,15 @@
     </div>
   </div>
 
+  <div class="background-card">
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <%= f.input :description %>
+        <%= f.input :url, label: "Url (useful for booking)" %>
+      </div>
+    </div>
+  </div>
+
 
   <!-- ["music", "conference", "comedy", "learning_education", "family_fun_kids",  "festivals_parades",  "movies_film",  "food", "fundraisers",  "art",  "support",  "holiday",  "books",  "attractions",  "community",  "business", "singles_social", "schools_alumni", "clubs_associations", "outdoors_recreation",  "performing_arts",  "animals",  "politics_activism",  "sales",  "science",  "religion_spirituality",  "technology", "sports", "other"] -->
 
@@ -28,15 +37,14 @@
     <div class="row">
       <div class="col-xs-12 col-lg-6">
           <%= f.input :start_time %>
-
           <%= f.input :end_time %>
       </div>
 
       <div class="col-xs-12 col-lg-6">
+        <%= f.input :venue_name %>
         <%= f.input :street_address %>
         <%= f.input :zip_code %>
         <%= f.input :city %>
-        <%= f.input :state %>
         <%= f.input :country %>
       </div>
     </div>
