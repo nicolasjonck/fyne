@@ -9,7 +9,7 @@
       </div>
       <div class="col-xs-12 col-lg-6">
         <%#= f.input :category, prompt: 'Please choose your category', collection: ["Art & Culture", "Music", "Films & Series", "Sports", "Games", "Wellness & Health", "Spirituality", "Non-profit", "Tasting & Restauration", "Crafting", "Party", "Business", "Politics", "Other"] %>
-        <%= f.input :category, prompt: 'Please choose your category', collection: ["music", "conference", "comedy", "learning_education", "family_fun_kids",  "festivals_parades",  "movies_film",  "food", "fundraisers",  "art",  "support",  "holiday",  "books",  "attractions",  "community",  "business", "singles_social", "schools_alumni", "clubs_associations", "outdoors_recreation",  "performing_arts",  "animals",  "politics_activism",  "sales",  "science",  "religion_spirituality",  "technology", "sports", "other"] %>
+        <%= f.input :category, prompt: 'Please choose your category', collection: ["music", "festivals_parades", "singles_social", "comedy", "movies_film", "performing_arts",  "books", "art", "attractions", "outdoors_recreation", "community", "clubs_associations", "sports", "support", "food", "fundraisers", "religion_spirituality", "technology", "science", "learning_education", "family_fun_kids", "schools_alumni", "sales", "business", "conference", "holiday", "politics_activism", "animals", "other"] %>
         <% if page_new %>
         <%= f.input :subcategory, collection: ["Please select a category first"], prompt: 'Please choose your subcategory' %>
         <% else %>

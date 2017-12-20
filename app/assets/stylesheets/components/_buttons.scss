@@ -7,8 +7,16 @@
   font-weight: bold;
   padding-top: 13px;
   padding-bottom: 13px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
   &:hover {
     opacity: 0.9;
+  }
+}
+
+.btn-fyne.btn-primary {
+  &:hover {
+    opacity: 1;
+    background-color: #FFCF00;
   }
 }
 
@@ -34,4 +42,39 @@
 
 .btn-event-show {
   margin: 10px;
+}
+
+.btn-book {
+  font-size: 30px;
+  width: 35px;
+  height: 35px;
+  background-color: $green;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border: 1x solid grey;
+  padding: 3px 0px 6px 11px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: white;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.share-fb {
+  font-size: 25px;
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border: 1x solid grey;
+  padding: 6px 0px 6px 6px;
+  text-decoration: none;
+  color: $black;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
 }

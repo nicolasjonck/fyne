@@ -1,4 +1,5 @@
 <%= render 'shared/navbar', profile_color: "active", calendar_color: "inactive", fyne_color: "inactive" %>
+
 <% content_for(:title_profile) do %>
   <%= @user.first_name %> <%= @user.last_name %>
 <% end %>
@@ -9,27 +10,46 @@
       <% if current_user.facebook_picture_url? %>
         <%= image_tag current_user.facebook_picture_url, class: "avatar-profile" %>
       <% elsif @user.photo? %>
-        <%= cl_image_tag( @user.photo.path, :width=>50, :height=>50, :gravity=>"face", :crop=>"thumb", class: "avatar-profile")  %>
+        <%= cl_image_tag( @user.photo.path, :width=>135, :height=>135, :gravity=>"face", :crop=>"thumb", class: "avatar-profile")  %>
       <% else %>
         <%= image_tag 'avatar.jpg', class: "avatar-profile" %>
       <% end %>
     </div>
-    <h1 class="user-name"><%= @user.first_name %> <%= @user.last_name %></h1>
   </div>
-  <div class="user-info">
-    <p>City: <%= @user.city %></p>
-    <% if @swipes > 0 %>
-      <p>Percentage of swipes liked: <%= @percentage_liked.round %>  %</p>
-    <% end %>
+  <div class="user-info text-center">
+    <h1 class="user-name text-center"><%= @user.first_name %> <%= @user.last_name %></h1>
+
+    <h2><%= Event.count %></h2>
+    <p>events available on fyne</p>
+
+    <%# user_swipes = Swipe.where(user: @user) %>
+    <%# array_of_user_events = [] %>
+    <%# user_swipes.each do |swipe| %>
+      <%# if swipe.event.city == @user.city %>
+        <%# array_of_user_events << swipe.event %>
+      <%# end %>
+    <%# end %>
+    <%# raise %>
+    <h2><%= Event.where(city: @user.city).count - Swipe.where(user: @user, event: Event.where(city: @user.city)).count %></h2>
+    <p>events not discovered yet in <%= @user.city %></p>
+    <%# raise %>
+
+    <h2><%= Event.where(user: @user).count %></h2>
+    <p>events you created</p>
+
+    <h2><%= Swipe.where(event: Event.where(user: @user), user: !@user, interested: true).count %></h2>
+    <p>likes received</p>
+
+
   </div>
 
-  <div class="row buttons btn-group-fyne ">
-    <%= link_to "Update profile", edit_user_registration_path, class: "btn btn-fyne btn-primary" %>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-fyne btn-danger" %>
+  <div class="row buttons btn-group-fyne btn-top-move">
+    <%= link_to "Update", edit_user_registration_path, class: "btn btn-fyne btn-primary" %>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-fyne btn-danger" %>
 
     <% if @user.admin %>
       <%= link_to "Admin page", rails_admin_path, class: "btn btn-fyne btn-primary" %>
     <% end %>
+
   </div>
 </div>
-
