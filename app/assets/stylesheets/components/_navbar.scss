@@ -33,6 +33,13 @@
 
 #navbar-item {
   font-size: 30px;
+  &:hover {
+    color: $yellow;
+  }
 }
 
-
+#logo-navbar-container:hover {
+  #LANDING-PAGE {
+    fill: $yellow;
+  }
+}

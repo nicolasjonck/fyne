@@ -74,6 +74,42 @@
   }
 }
 
+.share-fb-index {
+  font-size: 17px;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  border: 1x solid grey;
+  padding: 5px 0px 2px 5px;
+  text-decoration: none;
+  color: $black;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.book-btn-index {
+  z-index: 99;
+  height: 25px;
+  width: 25px;
+  font-size: 20px;
+  padding: 3px 0px 8px 8px;
+  margin-left: 10px;
+  background-color: $green;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border: 1x solid grey;
+  text-decoration: none;
+  color: white;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+}
+
 // .card-user {
 //   position: absolute;
 //   right: 10px;

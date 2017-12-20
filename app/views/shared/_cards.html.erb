@@ -13,7 +13,7 @@
   </div>
 
   <% if event.photouploaded %>
-    <% event_image = cl_image_path event.photouploaded.path %>
+    <% event_image = cl_image_path event.photouploaded.path, gravity: :south %>
   <% elsif event.photo %>
     <% event_image = image_path event.photo %>
   <% else %>
@@ -21,7 +21,7 @@
   <% end %>
 
   <div class="card-wrapper-index">
-    <div class="card-index" style="background-image: url('<%= event_image %>')" >
+    <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= event_image %>')" >
 
       <div class="card-description-index">
         <h2><%= event.name %></h2>
@@ -37,6 +37,16 @@
       <p>
       <%= pluralize((event.swipe.where(interested: true).count), 'person') %> interested
       </p>
+      <%=link_to "https://www.facebook.com/sharer/sharer.php?u=https://fyne.herokuapp.com/" do %>
+        <i class="fa fa-share share-fb-index" aria-hidden="true"></i>
+      <% end %>
+       <% if (event.url != nil) %>
+        <div>
+          <%=link_to "#{event.url}", target: :_blank do %>
+            <i class="fa fa-bolt book-btn-index" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

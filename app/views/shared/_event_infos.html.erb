@@ -1,20 +1,29 @@
 <div class="container">
-  <div id="main-info">
+  <div class="main-info-container">
+    <div class="main-info">
+      <div class="event-name">
+        <% if @event.venue_name != nil %>
+          <h2> <%= @event.name %> @ <%= @event.venue_name %></h2>
+        <% else %>
+          <h2> <%= @event.name %> </h2>
+        <% end %>
+      </div>
 
-    <div class="event-name">
-      <% if @event.venue_name != nil %>
-        <h2> <%= @event.name %> @ <%= @event.venue_name %></h2>
-      <% else %>
-        <h2> <%= @event.name %> </h2>
-      <% end %>
-    </div>
-    <p class="category-tag <%= @event.category.downcase %>-tag"> <%= @event.subcategory.capitalize.gsub(/_/," ")  %> </p>
-    <div class="share-fb">
-      <%=link_to "https://www.facebook.com/sharer/sharer.php?u=https://fyne.herokuapp.com/" do %>
-        <i class="fa fa-facebook" aria-hidden="true"></i>
-      <% end %>
+      <p class="category-tag <%= @event.category.downcase %>-tag"> <%= @event.subcategory.capitalize.gsub(/_/," ")  %> </p>
     </div>
 
+    <div class="main-info-btns">
+      <% if (@event.url != nil) & page_show %>
+         <%=link_to "#{@event.url}", target: :_blank do %>
+          <i class="fa fa-bolt btn-book" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+
+      <%=link_to "https://www.facebook.com/sharer/sharer.php?u=https://fyne.herokuapp.com/", target: :_blank do %>
+        <i class="fa fa-share share-fb" aria-hidden="true"></i>
+      <% end %>
+
+    </div>
   </div>
   <div id="secondary-infos">
     <div id="date" class="e-info">
@@ -47,6 +56,8 @@
       </div>
     </div>
 
+  <hr>
+
     <% if @event.description != nil %>
       <div id="description" class="e-info">
         <table>
@@ -54,7 +65,7 @@
             <td valign="top">
               <i class="fa fa-info-circle" aria-hidden="true" style="padding-left: 3px; padding-right:6px"></i>
             </td>
-            <td>
+            <td class="event-description">
               <p class="inline"> <%= @event.description %></p>
             </td>
           </tr>
