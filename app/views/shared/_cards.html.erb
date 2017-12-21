@@ -37,7 +37,7 @@
       <p>
       <%= pluralize((event.swipe.where(interested: true).count), 'person') %> interested
       </p>
-      <%=link_to "https://www.facebook.com/sharer/sharer.php?u=https://fyne.herokuapp.com/" do %>
+      <%=link_to "https://www.facebook.com/sharer/sharer.php?u=https://fyne.herokuapp.com/", target: :_blank do %>
         <i class="fa fa-share share-fb-index" aria-hidden="true"></i>
       <% end %>
        <% if (event.url != nil) & (event.url != "") %>
