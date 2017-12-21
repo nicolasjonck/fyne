@@ -33,7 +33,7 @@
         </div>
       </div>
       <div id="event-infos" class="custom-hide">
-       <%= render partial:'shared/event_infos', locals: { page_show: false } %>
+        <%= render partial:'shared/event_infos', locals: { page_show: false } %>
       </div>
     </div>
   </div>
@@ -62,14 +62,11 @@
     const center = document.getElementById('map');
 
     photo.addEventListener("click", (event) => {
-      navbar.classList.toggle('hidden');
+      navbar.classList.toggle('custom-hide');
       photo.classList.toggle('event-photo-container');
       mainInfosNew.classList.toggle('hidden');
       btns.classList.toggle('btns-on-focus');
       eventInfos.classList.toggle('custom-hide');
-      google.maps.event.trigger(map, 'resize');
-
-
 
     });
 
