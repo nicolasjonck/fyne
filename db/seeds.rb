@@ -21,6 +21,7 @@ users_attributes = [
     first_name: "Pierre-Alexis",
     last_name:  "Bayen",
     city:        "Paris",
+    admin: true,
     photo: "",
   },
   {
@@ -29,6 +30,7 @@ users_attributes = [
     first_name:      "Nicolas",
     last_name:  "Jonckheere",
     city:        "Brussels",
+    admin: true,
     photo: "",
   },
   {
@@ -37,6 +39,7 @@ users_attributes = [
     first_name:      "Madiha",
     last_name:  "Latafi",
     city:        "Paris",
+    admin: true,
     photo: "",
   }
 ]

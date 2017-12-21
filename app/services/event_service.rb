@@ -10,9 +10,12 @@ class EventService
 def initialize(attributes={})
   @city = attributes[:city]
   @category = attributes[:category]
+  @size = attributes[:size] || 20
   # @size = attributes[:size]
 end
 
+
+# hello
 def call
   number_of_created_events = Event.count
   puts "#{Event.count} available before the call"
@@ -43,9 +46,10 @@ private
 def get_events
   set_events
   set_names_of_events
-    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=10&image_sizes=large,dropshadow250,blackborder500,block250&l=#{@city}").read)
-    api_events["events"]["event"].each do |event|
-      new_event = Event.new
+    api_events = JSON.parse(open("http://api.eventful.com/json/events/search?app_key=#{ENV["EVENTFUL"]}&page_size=#{@size}&image_sizes=large,dropshadow250,blackborder500,block250&l=#{@city}").read)
+    if api_events["events"] != nil
+      api_events["events"]["event"].each do |event|
+        new_event = Event.new
         new_event.name = event["title"]
         # new_event.category = "Other"
         # new_event.subcategory = "Other"
@@ -127,6 +131,7 @@ def get_events
 
       end
     end
+  end
 end
 
 end

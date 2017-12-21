@@ -1,13 +1,19 @@
 .avatar-profile {
   border-radius: 50%;
-  height: 50px;
+  height: 135px;
+  width: 135px;
+  border: 2px solid white;
 }
 
 .user-img-name {
   display: flex;
-  margin: 15px 0px;
+  margin: 25px 0px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  // justify-content: space-between;
+}
+
+.user-img {
 }
 
 .user-info {
@@ -24,4 +30,8 @@
     color: $gray;
     margin-bottom: 0;
   }
+}
+
+.btn-top-move {
+  margin-top: 50px;
 }
