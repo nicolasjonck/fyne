@@ -4,7 +4,7 @@
 
 <% if @event != nil %>
   <div id="container-new-swipe">
-    <div id= "container-new" class="container-new">
+    <div id="container-new" class="container-new">
       <div class="row-card">
         <div class="">
           <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
@@ -50,7 +50,7 @@
   </div>
 <% end %>
 
-<% content_for(:js) do %>
+<% content_for(:after_js) do %>
 
   <script type="text/javascript">
     const navbar = document.getElementById('navbar-new');
@@ -68,6 +68,54 @@
       eventInfos.classList.toggle('hidden');
       google.maps.event.trigger(map, 'resize');
     });
+
+var gridWidth = 200;
+var gridHeight = 100;
+let draggable = Draggable.create("#photo", {
+    type:"x,y",
+    edgeResistance:0.2,
+    bounds:"#container-new",
+    lockAxis:true,
+    throwProps:true,
+    snap: {
+        x: function(endValue) {
+            return Math.round(endValue / gridWidth) * gridWidth;
+        },
+        y: function(endValue) {
+            return Math.round(endValue / gridHeight) * gridHeight;
+        }
+    }
+});
+
+// draggable[0]._eventTarget.addEventListener("touchstart", (event) => {
+//   var start = event
+//   console.log(start)
+// });
+
+
+draggable[0]._eventTarget.addEventListener("touchend", (event) => {
+  console.log(event)
+  if (event["changedTouches"][0]["pageY"] < 180) {
+      console.log("swipe up")
+      navbar.classList.toggle('hidden');
+      photo.classList.toggle('event-photo-container');
+      mainInfosNew.classList.toggle('hidden');
+      btns.classList.toggle('btns-on-focus');
+      eventInfos.classList.toggle('hidden');
+      google.maps.event.trigger(map, 'resize');
+  } else if (event["changedTouches"][0]["pageX"] < 100) {
+    console.log(event["changedTouches"][0]["pageX"])
+    console.log("left")
+    document.querySelector('.btn-dislike a').click()
+  } else if (event["changedTouches"][0]["pageX"] > 275) {
+    console.log(event["changedTouches"][0]["pageX"])
+    console.log("right")
+    document.querySelector('.btn-like a').click()
+  } else {
+    console.log(event["changedTouches"][0]["pageX"])
+    console.log("nothing")
+  };
+});
 
   </script>
 <% end %>
