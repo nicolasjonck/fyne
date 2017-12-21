@@ -27,6 +27,7 @@ gem 'coffee-rails'
 gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'jquery-rails'
+gem 'pg_search'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
