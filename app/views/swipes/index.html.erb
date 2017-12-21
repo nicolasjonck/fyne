@@ -1,5 +1,9 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
+<% content_for(:title) do %>
+  Events liked
+<% end %>
+
 <div class="container-fyne">
 
   <div class="text-center btn-group-fyne">
