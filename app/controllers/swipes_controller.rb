@@ -1,9 +1,10 @@
 class SwipesController < ApplicationController
   def index
-    if params[:query] == nil
+    if params[:query] == nil || params[:query] == ""
       @swipes_liked = Swipe.where(user: current_user).where(interested: true)
     else
-      @swipes_liked = Swipe.where(user: current_user).where(interested: true).joins(:event).where(events: {name: params[:query]})
+      # @swipes_liked = Swipe.where(user: current_user).where(interested: true).joins(:event).where(events: {name: params[:query]})
+      @swipes_liked = Swipe.where(user: current_user).where(interested: true).global_search(params[:query])
     end
 
     # Each swipe.event - retreive the date
