@@ -10,7 +10,7 @@ Bundler.require(*Rails.groups)
 module Fyne
   class Application < Rails::Application
     require "attachinary/orm/active_record"
-
+  config.action_view.embed_authenticity_token_in_remote_forms = true
     config.generators do |generate|
       generate.assets false
       generate.helper false

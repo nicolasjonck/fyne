@@ -2,56 +2,9 @@
   <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "inactive", fyne_color: "active" %>
 </div>
 
-<% if @event != nil %>
-  <div id="container-new-swipe">
-    <div id="container-new" class="container-new">
-      <div class="row-card">
-        <div class="">
-          <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @event.photo %>');">
-            <div id="main-infos-new" class="card-description ">
-              <h2><%= @event.name %></h2>
-              <p id="subcat"><%= @event.subcategory.capitalize.gsub(/_/," ")  %></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row-controls">
-        <div class="">
-          <div id="command-btn-group" class="controls">
-            <div class="control-btn btn-dislike">
-              <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: false}), method: :post do %>
-                <i class="fa fa-times fa-3x button dislike" aria-hidden="true"></i>
-              <% end %>
-            </div>
-            <div class="control-btn btn-like">
-              <%= link_to swipes_path(swipe: {event_id: @event.id, user_id: current_user.id, interested: true}), method: :post do %>
-                  <i class="fa fa-heart fa-3x button like" aria-hidden="true"></i>
-                <%#= image_tag "like.png", {class: "img-circle button"}%>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="event-infos" class="hidden">
-       <%= render partial:'shared/event_infos', locals: { page_show: false } %>
-      </div>
-    </div>
-  </div>
-
-<!-- if all the events have already been swiped by the current_user : -->
-
-<% else %>
-  <div class="container-new">
-    <div class="walter text-center">
-      <h1>Introducing Walter</h1>
-      <p>The #1 event finder in the world</p>
-      <%= render 'shared/walter' %>
-    </div>
-  </div>
-<%# EventService.new(city: current_user.city).call %>
-<%# redirect_to new_swipe_path %>
-<% end %>
-
+<div id="container-new-global">
+  <%= render 'shared/swipe_new', event: @event, swipe: @swipe %>
+</div>
 <% content_for(:after_js) do %>
 
   <script type="text/javascript">
@@ -65,6 +18,7 @@
     photo.addEventListener("click", (event) => {
       navbar.classList.toggle('hidden');
       photo.classList.toggle('event-photo-container');
+      photo.style.transform = "translate3d(0px, 0px, 0px)"
       mainInfosNew.classList.toggle('hidden');
       btns.classList.toggle('btns-on-focus');
       eventInfos.classList.toggle('hidden');
@@ -73,10 +27,10 @@
 
 var gridWidth = 200;
 var gridHeight = 100;
-let draggable = Draggable.create("#photo", {
+var draggable = Draggable.create("#photo", {
     type:"x,y",
     edgeResistance:0.2,
-    bounds:"#container-new",
+    bounds:"#photo-container-new",
     lockAxis:true,
     throwProps:true,
     snap: {
@@ -89,34 +43,35 @@ let draggable = Draggable.create("#photo", {
     }
 });
 
-// draggable[0]._eventTarget.addEventListener("touchstart", (event) => {
-//   var start = event
-//   console.log(start)
-// });
-
-
-draggable[0]._eventTarget.addEventListener("touchend", (event) => {
+document.getElementById('photo').addEventListener("touchend", (event) => {
   console.log(event)
-  if (event["changedTouches"][0]["pageY"] < 180) {
-      console.log("swipe up")
-      navbar.classList.toggle('hidden');
-      photo.classList.toggle('event-photo-container');
-      mainInfosNew.classList.toggle('hidden');
-      btns.classList.toggle('btns-on-focus');
-      eventInfos.classList.toggle('hidden');
-      google.maps.event.trigger(map, 'resize');
-  } else if (event["changedTouches"][0]["pageX"] < 100) {
-    console.log(event["changedTouches"][0]["pageX"])
+  if (event["changedTouches"][0]["pageX"] < 100) {
     console.log("left")
     document.querySelector('.btn-dislike a').click()
   } else if (event["changedTouches"][0]["pageX"] > 275) {
-    console.log(event["changedTouches"][0]["pageX"])
     console.log("right")
     document.querySelector('.btn-like a').click()
   } else {
-    console.log(event["changedTouches"][0]["pageX"])
     console.log("nothing")
   };
+});
+
+document.querySelector('.btn-like a').addEventListener("click", (event) => {
+  document.querySelector('.card').classList.add('card-flight-right');
+  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('photo').classList.remove('event-photo-container');
+  document.getElementById('main-infos-new').classList.remove('hidden');
+  document.getElementById('command-btn-group').classList.remove('btns-on-focus');
+  document.getElementById('event-infos').classList.add('hidden');
+});
+
+document.querySelector('.btn-dislike a').addEventListener("click", (event) => {
+  document.querySelector('.card').classList.add('card-flight-left');
+  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('photo').classList.remove('event-photo-container');
+  document.getElementById('main-infos-new').classList.remove('hidden');
+  document.getElementById('command-btn-group').classList.remove('btns-on-focus');
+  document.getElementById('event-infos').classList.add('hidden');
 });
 
   </script>
