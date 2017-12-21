@@ -9,7 +9,7 @@
         <% end %>
       </div>
 
-      <p class="category-tag <%= @event.category.downcase %>-tag"> <%= @event.subcategory.capitalize.gsub(/_/," ")  %> </p>
+      <p class="category-tag <%= @event.category.downcase %>-tag"> <%= @event.subcategory.gsub(/_/," ").capitalize %> </p>
     </div>
 
     <div class="main-info-btns">
