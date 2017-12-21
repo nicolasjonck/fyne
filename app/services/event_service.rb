@@ -14,6 +14,8 @@ def initialize(attributes={})
   # @size = attributes[:size]
 end
 
+
+# hello
 def call
   number_of_created_events = Event.count
   puts "#{Event.count} available before the call"
