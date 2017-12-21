@@ -46,8 +46,10 @@
       <h1>Introducing Walter</h1>
       <p>The #1 event finder in the world</p>
       <%= render 'shared/walter' %>
-     </div>
+    </div>
   </div>
+<%# EventService.new(city: current_user.city).call %>
+<%# redirect_to new_swipe_path %>
 <% end %>
 
 <% content_for(:js) do %>
@@ -67,6 +69,14 @@
       btns.classList.toggle('btns-on-focus');
       eventInfos.classList.toggle('hidden');
       google.maps.event.trigger(map, 'resize');
+    });
+
+    // document.onload = function({
+    //   <%# EventService.new(city: current_user.city).call if @event == nil %>
+    // });
+
+    $(document).ready({
+      <% EventService.new(city: current_user.city).call if @event == nil %>
     });
 
   </script>
