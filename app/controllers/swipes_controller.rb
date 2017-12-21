@@ -1,9 +1,14 @@
 class SwipesController < ApplicationController
   def index
-    @swipes_liked = Swipe.where(user: current_user).where(interested: true)
-   # Each swipe.event - retreive the date
-   @events_liked = @swipes_liked.map { |swipe| swipe.event }
-   @array_of_dates = @events_liked.map { |event| event.start_time }.sort.map{|date| date.strftime('%A %dth, %b %Y') }.uniq
+    if params[:query] == nil
+      @swipes_liked = Swipe.where(user: current_user).where(interested: true)
+    else
+      @swipes_liked = Swipe.where(user: current_user).where(interested: true).joins(:event).where(events: {name: params[:query]})
+    end
+
+    # Each swipe.event - retreive the date
+      @events_liked = @swipes_liked.map { |swipe| swipe.event }
+      @array_of_dates = @events_liked.map { |event| event.start_time }.sort.map{|date| date.strftime('%A %dth, %b %Y') }.uniq
   end
 
   def new
@@ -17,10 +22,15 @@ class SwipesController < ApplicationController
     # array_of_swiped_events contains the ids of the events already swiped
 
     @events = Event.where.not(id: array_of_swiped_events).where(city: current_user.city)
+    if @events == []
+      EventService.new(city: current_user.city, size: 20).call
+      @events = Event.where.not(id: array_of_swiped_events).where(city: current_user.city)
+    end
     # @events contains all the events that have not been swiped by the user
 
     @event = @events.sample
     # @event contains a random event selected in the @events array of "not swiped yet" events by the current_user
+
     @swipe = Swipe.new
     @marker = Gmaps4rails.build_markers(@event) do |event, marker|
       marker.lat event.latitude

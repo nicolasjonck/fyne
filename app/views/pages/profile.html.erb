@@ -22,17 +22,8 @@
     <h2><%= Event.count %></h2>
     <p>events available on fyne</p>
 
-    <%# user_swipes = Swipe.where(user: @user) %>
-    <%# array_of_user_events = [] %>
-    <%# user_swipes.each do |swipe| %>
-      <%# if swipe.event.city == @user.city %>
-        <%# array_of_user_events << swipe.event %>
-      <%# end %>
-    <%# end %>
-    <%# raise %>
     <h2><%= Event.where(city: @user.city).count - Swipe.where(user: @user, event: Event.where(city: @user.city)).count %></h2>
     <p>events not discovered yet in <%= @user.city %></p>
-    <%# raise %>
 
     <h2><%= Event.where(user: @user).count %></h2>
     <p>events you created</p>
@@ -48,7 +39,7 @@
     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-fyne btn-danger" %>
 
     <% if @user.admin %>
-      <%= link_to "Admin page", rails_admin_path, class: "btn btn-fyne btn-primary" %>
+      <%= link_to "Admin page", rails_admin_path, class: "btn btn-fyne btn-success" %>
     <% end %>
 
   </div>
