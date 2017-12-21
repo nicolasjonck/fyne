@@ -12806,7 +12806,7 @@ button.close {
 /* line 1, /Users/madihalatafi/code/MadihaLatafi/fyne/app/assets/stylesheets/components/_event-display.scss */
 .event-photo-container {
   width: 100vw;
-  height: 420px;
+  height: calc(75vh - 3px);
   overflow: hidden;
 }
 
