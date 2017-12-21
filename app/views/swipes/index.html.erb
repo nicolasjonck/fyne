@@ -36,9 +36,15 @@
     </a>
   </div>
 
-
   <div class="tab-content" id="all">
+    <!-- Search bar -->
     <div class="container-fyne">
+      <div class="search-bar">
+        <%= form_tag(swipes_path, method: :get) do %>
+          <%= text_field_tag :query %>
+          <%= submit_tag 'Search' %>
+        <% end %>
+      </div>
       <div class="cards-container-index">
 
         <% @array_of_dates.each do |date| %>

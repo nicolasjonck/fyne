@@ -1,9 +1,14 @@
 class SwipesController < ApplicationController
   def index
-    @swipes_liked = Swipe.where(user: current_user).where(interested: true)
-   # Each swipe.event - retreive the date
-   @events_liked = @swipes_liked.map { |swipe| swipe.event }
-   @array_of_dates = @events_liked.map { |event| event.start_time }.sort.map{|date| date.strftime('%A %dth, %b %Y') }.uniq
+    if params[:query] == nil
+      @swipes_liked = Swipe.where(user: current_user).where(interested: true)
+    else
+      @swipes_liked = Swipe.where(user: current_user).where(interested: true).joins(:event).where(events: {name: params[:query]})
+    end
+
+    # Each swipe.event - retreive the date
+      @events_liked = @swipes_liked.map { |swipe| swipe.event }
+      @array_of_dates = @events_liked.map { |event| event.start_time }.sort.map{|date| date.strftime('%A %dth, %b %Y') }.uniq
   end
 
   def new
