@@ -1,7 +1,5 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
-<%= render 'shared/flashes' %>
-
 <div class="event-photo-container overflow-hidden">
 
   <% if @event.photouploaded %>
@@ -12,8 +10,6 @@
     <%= image_tag "event-placeholder-photo.jpg", class: "event-photo"  %>
  <% end %>
 </div>
-
-
 
 <div>
   <%= render partial:'shared/event_infos', locals: { page_show: true } %>
