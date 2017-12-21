@@ -1,5 +1,6 @@
 <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "active", fyne_color: "inactive" %>
 
+
 <% content_for(:title) do %>
   <%= @event.name %>
 <% end %>
@@ -14,8 +15,6 @@
     <%= image_tag "event-placeholder-photo.jpg", class: "event-photo"  %>
  <% end %>
 </div>
-
-
 
 <div>
   <%= render partial:'shared/event_infos', locals: { page_show: true } %>

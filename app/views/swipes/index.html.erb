@@ -20,7 +20,7 @@
 
 <hr id="large-line">
 
-<h1 class="text-center">Events you liked</h1>
+<h2 class="text-center">Events you liked</h2>
 <br>
 
 <% if @events_liked.count != 0 %>
@@ -43,10 +43,14 @@
   <div class="tab-content" id="all">
     <!-- Search bar -->
     <div class="container-fyne">
-      <div class="search-bar">
+      <div class="form-row align-items-center ">
         <%= form_tag(swipes_path, method: :get) do %>
-          <%= text_field_tag :query %>
-          <%= submit_tag 'Search' %>
+          <div class ="col-auto">
+            <%= text_field_tag :query, nil, placeholder: 'Search', class: 'form-control' %>
+          </div>
+          <div class="col-auto">
+            <%= submit_tag 'Go!', class: "btn btn-primary", style: "display: none" %>
+          </div>
         <% end %>
       </div>
       <div class="cards-container-index">
