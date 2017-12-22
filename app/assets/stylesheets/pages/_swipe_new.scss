@@ -13,7 +13,18 @@
 //   height: 76vh;
 // }
 
+.card-flight-right {
+transform: translate(500px, -100px)!important;
+z-index: 9999;
+}
+
+.card-flight-left {
+transform: translate(-500px, 100px)!important;
+z-index: 9999;
+}
+
 .card {
+  transition: transform 800ms ease;
   height: calc(75vh - 3px);
   width: 100%;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -107,7 +118,7 @@
   width: 100%;
   position: absolute;
   top: 325px;
-  z-index: 99;
+  z-index: 9999;
   // position: absolute;
   // top: -129px;
   // z-index: 99;

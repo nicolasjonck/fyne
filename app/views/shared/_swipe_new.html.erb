@@ -1,0 +1,49 @@
+  <% if event != nil %>
+    <div id="container-new-swipe">
+      <div id="container-new" class="container-new">
+        <div class="row-card">
+          <div id="photo-container-new">
+            <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= event.photo %>');">
+              <div id="main-infos-new" class="card-description ">
+                <h2><%= event.name %></h2>
+                <p id="subcat"><%= event.subcategory.capitalize.gsub(/_/," ")  %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-controls">
+          <div class="">
+            <div id="command-btn-group" class="controls">
+              <div class="control-btn btn-dislike">
+                <%= link_to swipes_path(swipe: {event_id: event.id, user_id: current_user.id, interested: false}), method: :post, :remote => true do %>
+                  <i class="fa fa-times fa-3x button dislike" aria-hidden="true"></i>
+                <% end %>
+              </div>
+              <div class="control-btn btn-like">
+                <%= link_to swipes_path(swipe: {event_id: event.id, user_id: current_user.id, interested: true}), method: :post, :remote => true do %>
+                    <i class="fa fa-heart fa-3x button like" aria-hidden="true"></i>
+                  <%#= image_tag "like.png", {class: "img-circle button"}%>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="event-infos" class="hidden">
+         <%= render partial:'shared/event_infos', locals: { page_show: false } %>
+        </div>
+      </div>
+    </div>
+
+  <!-- if all the events have already been swiped by the current_user : -->
+
+  <% else %>
+    <div class="container-new">
+      <div class="walter text-center">
+        <h1>Introducing Walter</h1>
+        <p>The #1 event finder in the world</p>
+        <%= render 'shared/walter' %>
+      </div>
+    </div>
+  <%# EventService.new(city: current_user.city).call %>
+  <%# redirect_to new_swipe_path %>
+  <% end %>
