@@ -24,7 +24,11 @@
     <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= event_image %>')" >
 
       <div class="card-description-index">
-        <h2><%= event.name %></h2>
+        <% if event.name.size >= 42 %>
+          <h2><%= event.name[0..41] %>...</h2>
+        <% else %>
+          <h2><%= event.name %></h2>
+        <% end %>
         <p>
           <i class="fa fa-map-marker" aria-hidden="true" ></i>
           <span><%= event.street_address %> <%= event.zip_code %> <%= event.city %>, <%= event.country %></span>
