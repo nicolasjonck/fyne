@@ -205,9 +205,9 @@ document.getElementById('photo').addEventListener("touchend", (event) => {
         if (markers.length == 0) {
           handler.getMap().setZoom(2);
         } else if (markers.length == 1) {
-          handler.getMap().setZoom(5);
+          handler.getMap().setZoom(14);
         }
-                map.setCenter(markers[0].getPosition())
+        map.setCenter(markers[0].getPosition())
 
     });
 

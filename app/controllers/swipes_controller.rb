@@ -65,7 +65,7 @@ class SwipesController < ApplicationController
     # if @event == nil
     #   EventService.new(city: current_user.city).call
     # end
-        @marker = Gmaps4rails.build_markers(@event) do |event, marker|
+      @marker = Gmaps4rails.build_markers(@event) do |event, marker|
       marker.lat event.latitude
       marker.lng event.longitude
     end
