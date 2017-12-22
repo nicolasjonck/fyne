@@ -76,7 +76,9 @@
   <div class="tab-content hidden" id="today">
     <div class="container-fyne">
       <div class="cards-container-index">
-
+        <% if @events_liked == 0 %>
+          <p>You have no events</p>
+          <% end %>
         <% @array_of_dates.each do |date| %>
           <% if date.to_date == Date.today %>
             <h2><%= date %></h2>

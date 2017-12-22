@@ -15,6 +15,7 @@
 //   height: 76vh;
 // }
 
+<<<<<<< HEAD
 .custom-hide {
   overflow: hidden;
   opacity:0;
@@ -26,9 +27,20 @@
   overflow: hidden;
   transition: 0.3s;
   height: 100%;
+=======
+.card-flight-right {
+transform: translate(500px, -100px)!important;
+z-index: 9999;
+}
+
+.card-flight-left {
+transform: translate(-500px, 100px)!important;
+z-index: 9999;
+>>>>>>> 2f0ff7a7fe40a9f9e5f7e5b0977e2307195be9ec
 }
 
 .card {
+  transition: transform 800ms ease;
   height: calc(75vh - 3px);
   width: 100%;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -122,8 +134,13 @@
 .btns-on-focus {
   width: 100%;
   position: absolute;
+<<<<<<< HEAD
   top: 60vh;
   z-index: 99;
+=======
+  top: 325px;
+  z-index: 9999;
+>>>>>>> 2f0ff7a7fe40a9f9e5f7e5b0977e2307195be9ec
   // position: absolute;
   // top: -129px;
   // z-index: 99;

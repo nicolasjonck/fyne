@@ -1,0 +1,230 @@
+
+<% if @swipe.errors.any? %>
+  console.log(document.getElementById('container-new-global'))
+  console.log('error')
+  document.getElementById('container-new-global').innerHTML = "<%= j render 'shared/swipe_new', event: @event, swipe: @swipe %>";
+<% else %>
+  console.log(document.getElementById('container-new-global'))
+  console.log('no error')
+document.getElementById('container-new-global').innerHTML = ""
+  document.getElementById('container-new-global').innerHTML = "<%= j render 'shared/swipe_new', event: @event, swipe: Swipe.new %>";
+<% end %>
+
+
+
+document.getElementById('photo').addEventListener("click", (event) => {
+  document.getElementById('navbar-new').classList.toggle('hidden');
+  document.getElementById('photo').classList.toggle('event-photo-container');
+  document.getElementById('photo').style.transform = "translate3d(0px, 0px, 0px)"
+  document.getElementById('main-infos-new').classList.toggle('hidden');
+  document.getElementById('command-btn-group').classList.toggle('btns-on-focus');
+  document.getElementById('event-infos').classList.toggle('hidden');
+  google.maps.event.trigger(map, 'resize');
+});
+console.log("hello")
+var gridWidth = 200;
+var gridHeight = 100;
+var draggable_render = Draggable.create("#photo", {
+    type:"x,y",
+    edgeResistance:0.2,
+    bounds:"#photo-container-new",
+    lockAxis:true,
+    throwProps:true,
+    snap: {
+        x: function(endValue) {
+            return Math.round(endValue / gridWidth) * gridWidth;
+        },
+        y: function(endValue) {
+            return Math.round(endValue / gridHeight) * gridHeight;
+        }
+    }
+});
+document.getElementById('photo').addEventListener("touchend", (event) => {
+  console.log(event)
+  if (event["changedTouches"][0]["pageX"] < 100) {
+    console.log("left")
+    document.querySelector('.btn-dislike a').click()
+  } else if (event["changedTouches"][0]["pageX"] > 275) {
+    console.log("right")
+    document.querySelector('.btn-like a').click()
+  } else {
+    console.log("nothing")
+  };
+});
+
+    var styles = [
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#f7f1df"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#d0e3b4"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.terrain",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.business",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.medical",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#fbd3da"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#bde6ab"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffe15f"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#efd151"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "featureType": "transit.station.airport",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#cfb2db"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#a2daf2"
+            }
+        ]
+    }
+];
+
+
+
+    var handler = Gmaps.build('Google');
+    handler.buildMap({
+      provider: {
+        scrollwheel: false,
+        styles: styles
+      },
+      internal: { id: 'map' }}, function() {
+        markers = handler.addMarkers(<%= raw @marker.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+        map.setCenter(markers[0].getPosition())
+
+    });
+
+document.querySelector('.btn-like a').addEventListener("click", (event) => {
+  document.querySelector('.card').classList.add('card-flight-right');
+  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('photo').classList.remove('event-photo-container');
+  document.getElementById('main-infos-new').classList.remove('hidden');
+  document.getElementById('command-btn-group').classList.remove('btns-on-focus');
+  document.getElementById('event-infos').classList.add('hidden');
+});
+
+document.querySelector('.btn-dislike a').addEventListener("click", (event) => {
+  document.querySelector('.card').classList.add('card-flight-left');
+  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('photo').classList.remove('event-photo-container');
+  document.getElementById('main-infos-new').classList.remove('hidden');
+  document.getElementById('command-btn-group').classList.remove('btns-on-focus');
+  document.getElementById('event-infos').classList.add('hidden');
+});
