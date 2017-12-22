@@ -1,6 +1,6 @@
 <%= render 'shared/navbar', profile_color: "active", calendar_color: "inactive", fyne_color: "inactive" %>
 
-<% content_for(:title_profile) do %>
+<% content_for(:title) do %>
   <%= @user.first_name %> <%= @user.last_name %>
 <% end %>
 
