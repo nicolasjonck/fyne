@@ -48,6 +48,7 @@ document.getElementById('photo').addEventListener("touchend", (event) => {
     console.log("right")
     document.querySelector('.btn-like a').click()
   } else {
+    document.getElementById('photo').style.transform = "translate3d(0px, 0px, 0px)"
     console.log("nothing")
   };
 });
@@ -213,18 +214,18 @@ document.getElementById('photo').addEventListener("touchend", (event) => {
 
 document.querySelector('.btn-like a').addEventListener("click", (event) => {
   document.querySelector('.card').classList.add('card-flight-right');
-  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('navbar-new').classList.remove('custom-hide');
   document.getElementById('photo').classList.remove('event-photo-container');
   document.getElementById('main-infos-new').classList.remove('hidden');
   document.getElementById('command-btn-group').classList.remove('btns-on-focus');
-  document.getElementById('event-infos').classList.add('hidden');
+  document.getElementById('event-infos').classList.add('custom-hide');
 });
 
 document.querySelector('.btn-dislike a').addEventListener("click", (event) => {
   document.querySelector('.card').classList.add('card-flight-left');
-  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('navbar-new').classList.remove('custom-hide');
   document.getElementById('photo').classList.remove('event-photo-container');
   document.getElementById('main-infos-new').classList.remove('hidden');
   document.getElementById('command-btn-group').classList.remove('btns-on-focus');
-  document.getElementById('event-infos').classList.add('hidden');
+  document.getElementById('event-infos').classList.add('custom-hide');
 });
