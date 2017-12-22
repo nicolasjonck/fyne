@@ -148,9 +148,9 @@
       internal: { id: 'map' }}, function() {
         markers = handler.addMarkers(<%= raw @marker.to_json %>);
         if (markers.length == 0) {
-          handler.getMap().setZoom(5);
+          handler.getMap().setZoom(2);
         } else if (markers.length == 1) {
-          handler.getMap().setZoom(5);
+          handler.getMap().setZoom(14);
         }
 
         // handler.bounds.extendWith(markers);
