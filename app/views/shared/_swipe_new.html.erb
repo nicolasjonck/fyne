@@ -3,7 +3,11 @@
       <div id="container-new" class="container-new">
         <div class="row-card">
           <div id="photo-container-new">
-            <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= event.photo %>');">
+            <% if event.photouploaded %>
+              <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path event.photouploaded.path %>');">
+            <% else %>
+              <div id="photo" class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= event.photo %>');">
+            <% end %>
               <div id="main-infos-new" class="card-description ">
                 <h2><%= event.name %></h2>
                 <p id="subcat"><%= event.subcategory.capitalize.gsub(/_/," ")  %></p>
