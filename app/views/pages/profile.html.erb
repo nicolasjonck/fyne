@@ -25,7 +25,12 @@
 
     <% if @user.city == nil %>
     <% else %>
-      <h2><%= Event.where(city: @user.city).count - Swipe.where(user: @user, event: Event.where(city: @user.city)).count %></h2>
+      <% number_of_events_to_discover = Event.where(city: @user.city).count - Swipe.where(user: @user, event: Event.where(city: @user.city)).count %>
+      <% if number_of_events_to_discover >= 0 %>
+        <h2><%= number_of_events_to_discover %></h2>
+      <% else %>
+        <h2>0</h2>
+      <% end %>
       <p>events not discovered yet in <%= @user.city %></p>
     <% end %>
 
