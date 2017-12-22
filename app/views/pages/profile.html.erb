@@ -22,8 +22,12 @@
     <h2><%= Event.count %></h2>
     <p>events available on fyne</p>
 
-    <h2><%= Event.where(city: @user.city).count - Swipe.where(user: @user, event: Event.where(city: @user.city)).count %></h2>
-    <p>events not discovered yet in <%= @user.city %></p>
+
+    <% if @user.city == nil %>
+    <% else %>
+      <h2><%= Event.where(city: @user.city).count - Swipe.where(user: @user, event: Event.where(city: @user.city)).count %></h2>
+      <p>events not discovered yet in <%= @user.city %></p>
+    <% end %>
 
     <h2><%= Event.where(user: @user).count %></h2>
     <p>events you created</p>
