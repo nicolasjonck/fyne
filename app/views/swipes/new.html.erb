@@ -2,9 +2,11 @@
   <%= render 'shared/navbar', profile_color: "inactive", calendar_color: "inactive", fyne_color: "active" %>
 </div>
 
+
 <div id="container-new-global">
   <%= render 'shared/swipe_new', event: @event, swipe: @swipe %>
 </div>
+
 <% content_for(:after_js) do %>
 
   <script type="text/javascript">
@@ -14,16 +16,18 @@
     const mainInfosNew = document.getElementById('main-infos-new');
     const btns = document.getElementById('command-btn-group');
     const eventInfos = document.getElementById('event-infos');
+    // const center = document.getElementById('map');
 
     photo.addEventListener("click", (event) => {
-      navbar.classList.toggle('hidden');
+      navbar.classList.toggle('custom-hide');
       photo.classList.toggle('event-photo-container');
       photo.style.transform = "translate3d(0px, 0px, 0px)"
       mainInfosNew.classList.toggle('hidden');
       btns.classList.toggle('btns-on-focus');
-      eventInfos.classList.toggle('hidden');
-      google.maps.event.trigger(map, 'resize');
+      eventInfos.classList.toggle('custom-hide');
+
     });
+
 
 var gridWidth = 200;
 var gridHeight = 100;
@@ -58,21 +62,22 @@ document.getElementById('photo').addEventListener("touchend", (event) => {
 
 document.querySelector('.btn-like a').addEventListener("click", (event) => {
   document.querySelector('.card').classList.add('card-flight-right');
-  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('navbar-new').classList.remove('custom-hide');
   document.getElementById('photo').classList.remove('event-photo-container');
   document.getElementById('main-infos-new').classList.remove('hidden');
   document.getElementById('command-btn-group').classList.remove('btns-on-focus');
-  document.getElementById('event-infos').classList.add('hidden');
+  document.getElementById('event-infos').classList.add('custom-hide');
 });
 
 document.querySelector('.btn-dislike a').addEventListener("click", (event) => {
   document.querySelector('.card').classList.add('card-flight-left');
-  document.getElementById('navbar-new').classList.remove('hidden');
+  document.getElementById('navbar-new').classList.remove('custom-hide');
   document.getElementById('photo').classList.remove('event-photo-container');
   document.getElementById('main-infos-new').classList.remove('hidden');
   document.getElementById('command-btn-group').classList.remove('btns-on-focus');
-  document.getElementById('event-infos').classList.add('hidden');
+  document.getElementById('event-infos').classList.add('custom-hide');
 });
+
 
   </script>
 <% end %>

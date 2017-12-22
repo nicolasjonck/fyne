@@ -139,7 +139,6 @@
 ];
 
 
-
     var handler = Gmaps.build('Google');
     handler.buildMap({
       provider: {
@@ -148,15 +147,14 @@
       },
       internal: { id: 'map' }}, function() {
         markers = handler.addMarkers(<%= raw @marker.to_json %>);
-        if (markers.length == 0) {
-          handler.getMap().setZoom(5);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(5);
-        }
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
-        console.log(markers)
-        // map.setCenter(markers[0].getPosition())
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+    // var currCenter = map.getCenter();
     });
   </script>
 
